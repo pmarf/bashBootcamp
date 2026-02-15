@@ -21,6 +21,7 @@
   * Default searchmask: `*.sh`
   * Hints: Use find and wc
 
+
 * [countchars.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/countchars.sh)
 
   Count number of chars in a file read from ueser and print the 10 most frequent chars with thir percentage
@@ -28,11 +29,13 @@
   `countchars.sh [filename]`
 
   * Hints: Use read, associative array, sort, head and use bash calculations
-  * Challenge: Allow script to accept input from stdin if no filename is passed as first argument via pipe  
+  * Challenge: Allow script to accept input from stdin if no filename is passed as first argument via pipe
+     ```
      countchars.sh filename => read from file filename
      countchars.sh => read from console
      countchars.sh < filename => read from file filename (filename is used in stdin)
      cat countchars.sh | countchars.sh => read from pipe
+     ```
 
 * [substdigits.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/substdigits.sh)
 
