@@ -1,17 +1,15 @@
-# Sample exercises and sample code for a bash bootcamp
+# bash bootcamp excercises
 
-## All scripts should
+## General
 
 1. Verify all user input
 1. Write short error message to stderr with helper function in case of an error
 1. Place helper functions in function.sh and source it
-1. Pass `shellcheck -x <filename>` without error messages
-1. Use identation to format code
+1. Use `shellcheck -x <filename>` and correct any findings
+1. Follow standard C/C++ identation rules
+1. Execute `shellcheck [!b]*.sh 2>/dev/null && echo "*** OK ***" || echo "??? Fail ???"` to check all scripts
 
-## Final test of all scripts
-* `shellcheck [!b]*.sh 2>/dev/null && echo "*** OK ***" || echo "??? Fail ???"`
-
-## Sample exercises
+## Exercises
 
 * [countfiles.sh](https://github.com/pmarf/bashBootcamp/blob/main/countfiles.sh)
 

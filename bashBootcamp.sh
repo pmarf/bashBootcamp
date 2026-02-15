@@ -67,6 +67,13 @@ fi
 echo "Das ist eine\
          Demo der Zeilenfortsetzung mit vielen Spaces"
 
+# Blockcommentare gibt es nicht aber einen workaround mit einem here doc
+
+:<<'SKIP'
+Das ist irgendein Text
+der über mehrere Zeilen geht
+SKIP
+
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
 # >>> Tastatur Quickies <<<
@@ -800,7 +807,7 @@ unset IFS						# IFS wieder auf default setzen
 
 # >>> parameter expansions <<<
 
-# Default Werte für Variablen setzen, Texte ersetzen, Substring, 
+# Default Werte für Variablen setzen, Texte ersetzen, Substring,
 
 man bash 2>/dev/null | grep -E 'Parameter Expansion | \${.+}$'
 
@@ -821,7 +828,7 @@ case "$v" in
 
 	*world*) echo "Fund world"
 			;;
-esac			
+esac
 
 # string manipulation
 
@@ -837,59 +844,6 @@ echo "$vm"
 
 :<<SKIP
 
-Anforderungen an alle Scripts:
-
-1.	Ausreichende Eingabeprüfung
-2. 	Im Fehlerfalle eine Meldung schreiben und mit RC 1 das Script beenden
-3.	Im Erfolgsfall RC 0 liefern
-4.	Den vorgegebenen Scriptnamen nutzen
-5.	Jedes Script mit shellcheck prüfen und korrigieren
-6.	Hinweise müssen nicht befolgt werden, es gibt viele Wege nach Rom :-D
-
-1. 	countfiles.sh [directory] [extension]?
-	Beispiel: countfiles.sh ~ *.sh oder countfiles.sh /home/$LOGNAME *.jpg oder countfiles.sh und anschliessende Eingabe von *.sh
-	Sucht in einem Verzeichnis rekursiv nach allen Dateien, die eine bestimmte Extension haben und gib am Ende aus, wieviele Dateien gefunden wurden.
-	Die Eingabe der Extension soll vom Terminal angefragt werden wenn sie nicht eingegeben wurde. Ansonsten ist es der erste Aufrufparameter
-
-2. 	fibonacci.sh [number]?
-	Beispiel: finbonacci.sh 10
-	Berechnet die Fibonaccizahlen iterativ und rekursiv. Dabei die Eingabe (ersten Parameter) auf korrektes Format überprüfen.
-
-3. 	testipv4.sh [IPv4]
-	Testet eine IPv4 auf korrekte Schreibweise
-	Optional: teste ob es eine valide extene IPv4 ist, also keine private IP (Class A,B,C oder LL)
-	10.0.0.0 – 10.255.255.255 (Klasse A)
-	172.16.0.0 – 172.31.255.255 (Klasse B)
-	192.168.0.0 – 192.168.255.255 (Klasse C)
-	169.254.0.0 – 169.254.255.255 (Link-Local)
-
-4. 	highlow.sh
-	Implementierung des High-Low Spiels
-	Ausgabe des minimalen (0) und maximalen (100) Wertes und einlesen des Tipps in einer Loop
-	Test ob match und ansonsten weiterfragen
-	Dabei mitzählen wie häufig geraten wird
-	Optional: Binärer Suche - die optimalsten Suchstrategie - anwenden und die Anzahl optimaler Versuche am Ende des Spiels ausgeben
-
-5.	weatherin.sh [cityname]?
-	Holt Wetterdaten von einem beliebigen Ort per curl und gib sie aus
-	curl "https://nominatim.openstreetmap.org/search?q=Renningen&format=json&limit=1"
-	curl "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true"
-	Eingabe des Ortes und Ausgabe von Temperatur und Windgeschwindigkeit und -richtung
-	Fehlerfall abfangen falls Ort nicht gefunden wurde
-	Tipp für Fortgeschrittene: jq nutzen (sudo apt install jq)
-
-6.	findactivedevices.sh [localnet] [-i|-d]?
-	Sucht nach allen Geräten im lokalen Netz und Ausgabe der IP Adressen sowie der DNS Namen
-	Installation von nmap: sudo apt install nmap
-    nmap -sP 192.168.0.0/24 sucht alle aktiven IPs mit ihren DNS Namen
-	Optional: Per Option wird die Liste nach IPv4 (Optione -i, numerisch sortiert) und DNS Namen (Option -d, alphabetisch sortiert) sortiert ausgegeben
-
-7.	countchars.sh [filename]
-	Zählen der Häufigkeit von Buchstaben und Ausgabe der 10 häufigsten Zeichen  mit ihrer % Häufigkeit
-	Hinweis: sort Befehl
-
-8. 	denumber.sh [filename]
-	Ersetzen von Ziffern 0-9 durch den entsprechenden Text null, eins, zwei, ... neun
-	Hinweis: Associatives Array und here doc
+See README on https://github.com/pmarf/bashBootcamp
 
 SKIP
