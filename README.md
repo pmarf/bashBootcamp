@@ -8,7 +8,7 @@
 1. Pass `shellcheck -x <filename>` without error messages
 
 ## Final test
-* `hellcheck [!b]*.sh 2>/dev/null && echo "*** Verything passes checkshell ***" || echo "??? Some scripts fail checkshell ???"`
+* `shellcheck [!b]*.sh 2>/dev/null && echo "*** Verything passes checkshell ***" || echo "??? Some scripts fail checkshell ???"`
 
 ## Sample exercises
 
