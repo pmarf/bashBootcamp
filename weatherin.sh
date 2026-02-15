@@ -32,11 +32,9 @@ readonly DEBUG=o                                                                
 jqAvailable=0                                                                   # check whether jq is available
 if which jq > /dev/null; then   # sudo apt install jq
     jqAvailable=1
-    echo "Using jq ..."
-    echo "Uninstall jq with 'sudo apt remove jq -y'"
+    echo "Using jq. Uninstall jq with 'sudo apt remove jq -y'"
 else
-    echo "Using regex ..."
-    echo "Install jq with 'sudo apt inpstall jq -y'"
+    echo "Using regex. Install jq with 'sudo apt inpstall jq -y'"
 fi
 
 cityWeather() {
@@ -48,8 +46,8 @@ cityWeather() {
 
     city="$1"
 
-    resultCity="$(curl -s ${OPENSTREATMAP_URL}/search?q="$city"\&format=json\&limit=1)"
-    if (( $? != 0 )) || [[ "$resultCity" == "[]" ]] || [[ -z "$resultCity" ]]; then
+    if ! resultCity="$(curl -s ${OPENSTREATMAP_URL}/search?q="$city"\&format=json\&limit=1)" \
+    	|| [[ "$resultCity" == "[]" ]] || [[ -z "$resultCity" ]]; then
         error "$city not found"
     fi
 
@@ -74,7 +72,7 @@ cityWeather() {
         error "Unable to find latitude and logitude for $city"
     fi
 
-    echo -n "$city has lat $latitude and lon $longitude - "
+    echo -n "$city ($latitude,$longitude) => "
 
     if ! resultWeather="$(curl -s $OPENMETEO_URL/v1/forecast?latitude="$latitude"\&longitude="$longitude"\&current_weather=true)"; then
         error "Weather data not found for $city"
@@ -102,7 +100,7 @@ cityWeather() {
         error "Unable to find temp, windspeed and winddirection for $city"
     fi
 
-    echo "$city has temp $temperature, windspeed $windspeed and winddirection $winddirection"
+    echo "temp $temperature, windspeed $windspeed, winddirection $winddirection"
 }
 
 if (( $# != 0 )); then

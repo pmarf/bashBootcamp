@@ -1,11 +1,14 @@
 # Sample exercises and sample code for a bash bootcamp
 
-## All script should
+## All scripts should
 
 1. Verify all user input
 1. Write short error message to stderr with helper function in case of an error
 1. Place helper functions in function.sh and source it
-1. Should pass `shellcheck -x <filename>` without error messages
+1. Pass `shellcheck -x <filename>` without error messages
+
+## Final test
+* `hellcheck [!b]*.sh 2>/dev/null && echo "*** Verything passes checkshell ***" || echo "??? Some scripts fail checkshell ???"`
 
 ## Sample exercises
 
