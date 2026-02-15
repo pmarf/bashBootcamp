@@ -14,7 +14,7 @@
 
 * [countfiles.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/countfiles.sh)
 
- Count number of files with a given extension in a directory tree passed as first argument and accept second argument for the search mask of find
+  Count number of files with a given extension in a directory tree passed as first argument and accept second argument for the search mask of find
 
   `countFiles.sh [directory] [searchmask]?`
 
