@@ -133,9 +133,9 @@ rmdir Unterverzeichnis3
 ls -la bashBootcamp.sh
 chmod +x bashBootcamp.sh # setzen des executebits
 
-# >>> Globbing Wildcards <<<
+# >>> Globbing <<<
 #
-# Globbing bezeichet die Expandierung von Wildcards vor der Befehlsausführung
+# Globbing bezeichet die Expandierung von Wildcards vor der Befehlsausführung mit Patterns
 # * beliebige Zeichen, ? exakt ein Zeichen, [a-z] Character class
 # Anzeige aller Dateien im aktuellen Verzeichnis die mit bash beginnen
 # Achtung auf Sonderzeichen
@@ -220,7 +220,7 @@ ls *Boot*
 # cut - Selektion von Teilen einer Textzeile
 # exec - Ausführen von Befehlen in keiner Subshell sondern Ersetzung der aktuellen shell
 # find - Suchen nach Dateien oder Verzeichnissen
-# grep - Suche nach Dateien mit einem bestimmten Inhalt
+# grep - Suche nach Dateien mit einem bestimmten Inhalt
 # head - Anfang von Dateien anzeigen
 # less - Scrollfähige Anzeige von Dateien
 # locate - Suche nach Dateien mit der Datenbank locatedb
@@ -797,6 +797,37 @@ for e in "${V[@]}"; do
    echo $e
 done
 unset IFS						# IFS wieder auf default setzen
+
+# >>> parameter expansions <<<
+
+# Default Werte für Variablen setzen, Texte ersetzen, Substring, 
+
+man bash 2>/dev/null | grep -E 'Parameter Expansion | \${.+}$'
+
+# >>> patterns <<<
+
+# Patterns werden i.W. beim globbing genutzt
+# Ausserdem beim test mit [[ .. == .. ]]
+
+v="Hello world"
+
+if [[ "$v" == *[w]* ]]; then
+	echo "Found world"
+fi
+
+# Case statements
+
+case "$v" in
+
+	*world*) echo "Fund world"
+			;;
+esac			
+
+# string manipulation
+
+v="Hello world and universe"
+vm=${v/world*/earth}				# replace world (bash parameter expansion)
+echo "$vm"
 
 ###########################################################################################
 #
