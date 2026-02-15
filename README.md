@@ -6,6 +6,7 @@
 1. Write short error message to stderr with helper function in case of an error
 1. Place helper functions in function.sh and source it
 1. Pass `shellcheck -x <filename>` without error messages
+1. Use identation to format code
 
 ## Final test of all scripts
 * `shellcheck [!b]*.sh 2>/dev/null && echo "*** OK ***" || echo "??? Fail ???"`
@@ -77,7 +78,7 @@
   `testipv4.sh [ipv4]?`
 
    * Hints: Use indexed array, carefully test ipv4 with function isInteger, change IFS to "." to split nibbles
-   * Challenge: Test if ip address is member of a private network, use switch statement
+   * Challenge: Test if ip address is member of a private network, use switch statement with bash patterns
 
    * private networks
 ```
@@ -94,7 +95,7 @@
   `weatherin.sh [City]`
 
   * Default: Read cityname argument, if no argument retrieve values for a list of cities `Hamburg Berlin Frankfurt Muenchen Kiew Peking`
-  * Hints: Use curl, https://nominatim.openstreetmap.org https://api.open-meteo.com to retrieve,
+  * Hints: Use curl, https://nominatim.openstreetmap.org https://api.open-meteo.com to retrieve data, use regular expressions
       use READONLY for URL locations of a city and temperature et al
   * Challenge: Use jq instead of grep to extract data from json doc returned by api calls
 

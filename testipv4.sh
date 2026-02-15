@@ -65,13 +65,10 @@ isLocalIPv4() { # check whether the IPv4 is a private network
 
    case "$1" in
 
-   10\.*)
+   10\.*|172\.16\.*)				# | is a pattern separator to catch two subnets in one match
       return 0
       ;;
-   172\.16\.*)
-      return 0
-      ;;
-   192\.168\.*)
+   192\.186\.*)					# More readable pattern, use \ to escape . which matches one char otherwise
       return 0
       ;;
    169\.254\.*)
@@ -99,7 +96,6 @@ if (($# != 0)); then
 else
    ips="10.9.8.5 192.168.8.9 1.2.3.4 -4.6.7. 1.2.3.500 169.253.0.0 " # small test
    for ip in $ips; do
-      echo "Testing $ip"
       testIPv4 "$ip"
    done
 

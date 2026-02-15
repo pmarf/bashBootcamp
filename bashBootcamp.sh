@@ -14,10 +14,13 @@
 # - man bash
 # - man bash-builtin
 #
-# Gutes Checktool (linter) für bash: shellcheck
+# - Gutes Checktool (linter) für bash: shellcheck
 #	sudo apt install shellcheck
 #	https://github.com/koalaman/shellcheck/wiki/<shellcheckmessageid> liefert eine detailierte Beschreibung
 #       zu der Meldungsnummer und warum die Meldung geschrieben wurde und wie sie zu beseitigen ist
+#
+# - Formatierungstool
+#   shfmt -i 3 *.sh (sudo apt install shfmt)
 #
 # - Hilfe
 #   Zu den meisten Befehlen gibt es eine direkte Hilfe mit man <Befehl>, z.B. man ls
