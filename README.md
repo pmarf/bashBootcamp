@@ -16,15 +16,20 @@
 
   Count number of files with a given extension in a directory tree passed as first argument and accept second argument for the search mask of find
 
-  `countFiles.sh [directory] [searchmask]?`
+  `countfiles.sh [directory] [searchmask]?`
 
+  * Examples
+    ```
+    countfiles.sh ~/bashBootcamp
+    countfiles.sh ~/bashBootcamp *.jpg
+    ```
   * Default searchmask: `*.sh`
   * Hints: Use find and wc
 
 
 * [countchars.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/countchars.sh)
 
-  Count number of chars in a file read from ueser and print the 10 most frequent chars with thir percentage
+  Count number of chars in a file read from user and print the 10 most frequent chars with their percentage
 
   `countchars.sh [filename]`
 
@@ -39,8 +44,8 @@
 
 * [substdigits.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/substdigits.sh)
 
-  Replace digits 0-9 with their textual representation
- 
+  Read a file and replace digits 0-9 with their textual representation
+
   `substdigits.sh [filename]`
 
    * Hints: Use read, associative array, here doc
@@ -56,7 +61,7 @@
 * [findactivedevices.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/findactivedevices.sh)
 
   Scan local net for active systems and print their DNS name and IP address
- 
+
   `findactivedevices.sh [local ipv4 network] like 192.168.0.0/24 or 192.168.178.0/24`
 
   Hints: Use `map -sP "$1"` to scan network, use associative arrays and grep, use printf to enhance output format
@@ -108,20 +113,25 @@
   Sourced file with helper functions and debug enhancement definition
 
 ```
-github.com/AlDanial/cloc v 1.98  T=0.01 s (696.3 files/s, 55164.8 lines/s)
+cloc --by-file [!b]*.sh
+       9 text files.
+       9 unique files.
+       0 files ignored.
+
+github.com/AlDanial/cloc v 1.98  T=0.01 s (672.4 files/s, 53642.9 lines/s)
 ----------------------------------------------------------------------------------
 File                                blank        comment           code
 ----------------------------------------------------------------------------------
 highlow.sh                             15             23             81
-weatherin.sh                           19             22             74
-testipv4.sh                            17             28             65
+weatherin.sh                           19             22             72
+testipv4.sh                            16             28             65
 findactivedevices.sh                   16             24             51
 fibonacci.sh                           11             22             42
+countchars.sh                          14             22             37
 substdigits.sh                          6             22             37
-countchars.sh                          11             22             32
 functions.sh                            3             22             13
 countfiles.sh                           4             23              8
 ----------------------------------------------------------------------------------
-SUM:                                  102            208            403
+SUM:                                  104            208            406
 ----------------------------------------------------------------------------------
 ```

@@ -54,7 +54,7 @@ fibonacci() { # number
 
     if (( $1 < 0 || $1 > 20 )); then
         error "Number out of bounds"
-    fi  
+    fi
 
     result="$(fak_r "$1")"
     echo -n "$1! = $result (recursive)"
@@ -66,10 +66,14 @@ fibonacci() { # number
 }
 
 if (( $# != 0 )); then
-    fibonacci "$1"
+   if ! isInteger "$1"; then
+      error "Invalid integer $1"
+   else
+      fibonacci "$1"
+   fi
 else
     for i in $(seq 0 5 20);do                               # some tests
         fibonacci "$i"
     done
-fi  
+fi
 
