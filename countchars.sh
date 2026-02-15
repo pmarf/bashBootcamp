@@ -26,10 +26,21 @@ source functions.sh                                         # source helperfunct
 
 declare -A frequency                                        # dictionary which hols the count of every char
 
-if (( $# == 1 )); then
-	input="$1"                                          # use passed filename
-else
-	input="/dev/stdin"                                  # use pipe input
+if [[ -n "$1" ]]; then					    # filename was passed as first argument, read from this file
+    exec < "$1"
+
+elif [[ ! -t 0 ]]; then  				    # stdin already connected, do nothing
+    :
+
+else							    # no pipe input, ask user for filename
+    read -rp "Enter filename: " filename
+
+    if [[ ! -f "$filename" ]]; then
+        echo "Error: file not found" >&2
+        exit 1
+    fi
+
+    exec < "$filename"
 fi
 
 sumchars=0
@@ -44,7 +55,7 @@ while read -r line; do                                      # process every line
             (( frequency[$char]=1 ))                        # else initialize counter
         fi
     done
-done < "$input"
+done
 
 echo "Sum chars: $sumchars"
 
