@@ -1,4 +1,4 @@
-# bash bootcamp excercises
+# bash bootcamp exercises
 
 ## General
 

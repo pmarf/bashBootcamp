@@ -142,7 +142,7 @@ chmod +x bashBootcamp.sh # setzen des executebits
 
 # >>> Globbing <<<
 #
-# Globbing bezeichet die Expandierung von Wildcards vor der Befehlsausführung mit Patterns
+# Globbing bezeichnet die Expandierung von Wildcards vor der Befehlsausführung mit Patterns
 # * beliebige Zeichen, ? exakt ein Zeichen, [a-z] Character class
 # Anzeige aller Dateien im aktuellen Verzeichnis die mit bash beginnen
 # Achtung auf Sonderzeichen
@@ -265,7 +265,7 @@ find -iname "*.sh" -exec grep -H "\bif\b" '{}' \; | wc -l
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Kommandein- und Ausgaben können redirected werden. Üblicherweise sind das Ein- und Ausgabedateien
+# Commandein- und Ausgaben können redirected werden. Üblicherweise sind das Ein- und Ausgabedateien
 
 # Ausgabe
 # stdout bzw 1 ist normaler Ausgabekanal, stderr bzw 2 ist Fehlerausgabekanal
