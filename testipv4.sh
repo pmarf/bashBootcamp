@@ -30,17 +30,17 @@ isValidIPv4() {
    IFS="." read -r -a nibbles <<<"$1" # read the text and split by "." into array
 
    if ((${#nibbles[@]} != 4)); then # IPv4 has to have 4 nibbles
-      error "4 Nibbles required in $1" ""
+      error "ERROR: $1: 4 Nibbles required" ""
       return 1
    fi
 
    for nibble in "${nibbles[@]}"; do # now check all nibbles for an integer
       if ! isInteger "$nibble"; then
-         error "$nibble is not a valid nibble" ""
+         error "ERROR: $1: $nibble is not a valid nibble" ""
          return 1
       fi
       if ((nibble < 0 || nibble > 255)); then # and >= 0 and <= 255
-         error "$nibble in $1 is < 0 or > 255" ""
+         error "ERROR: $1: $nibble is < 0 or > 255" ""
          return 1
       fi
    done
@@ -56,7 +56,7 @@ isValidIPv4() {
 isLocalIPv4() { # check whether the IPv4 is a private network
 
    if ! isValidIPv4 "$1"; then
-      error "$1 is no valid IPv4" ""
+      error "ERROR: $1 is no valid IPv4" ""
    fi
 
    local -a nibbles
@@ -65,13 +65,13 @@ isLocalIPv4() { # check whether the IPv4 is a private network
 
    case "$1" in
 
-   10\.*|172\.16\.*)				# | is a pattern separator to catch two subnets in one match
+   10.* | 172.16.*)				# | is a pattern separator to catch two subnets in one match
       return 0
       ;;
-   192\.186\.*)					# More readable pattern, use \ to escape . which matches one char otherwise
+   192.168.*)					# More readable pattern without |
       return 0
       ;;
-   169\.254\.*)
+   169.254.*)
       return 0
       ;;
    *)
@@ -84,9 +84,9 @@ isLocalIPv4() { # check whether the IPv4 is a private network
 testIPv4() {
    if isValidIPv4 "$1"; then
       if isLocalIPv4 "$1"; then
-         echo "$1 is a local IPv4 address"
+        echo "INTERN: $1"
       else
-         echo "$1 is an external IPv4 address"
+         echo "EXTERN: $1"
       fi
    fi
 }
@@ -94,7 +94,8 @@ testIPv4() {
 if (($# != 0)); then
    testIPv4 "$1"
 else
-   ips="10.9.8.5 192.168.8.9 1.2.3.4 -4.6.7. 1.2.3.500 169.253.0.0 " # small test
+   ips="10.9.8.5 192.168.8.9 172.16.5.6 169.254.5.6 \
+  192.169.4.3 172.17.3.4 1.2.3.4 -4.6.7. 1.2.k.3 1.2.3.500" # small test
    for ip in $ips; do
       testIPv4 "$ip"
    done
