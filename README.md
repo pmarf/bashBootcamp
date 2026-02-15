@@ -18,7 +18,7 @@
 
   `countfiles.sh [directory] [searchmask]?`
 
-  * Examples
+  * Example 
     ```
     countfiles.sh ~/bashBootcamp
     countfiles.sh ~/bashBootcamp *.jpg
@@ -29,7 +29,7 @@
 
 * [countchars.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/countchars.sh)
 
-  Count number of chars in a file read from user and print the 10 most frequent chars with their percentage
+  Count number of chars in a file and read filename from user and print the 10 most frequent chars with their percentage
 
   `countchars.sh [filename]`
 
@@ -52,11 +52,12 @@
 
 * [fibonacci.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/fibonacci.sh)
 
-  Calculate fibonacci numbers iterativ and recursive
-  ```
-  fibonacci.sh [number]?
-  Default: If no argument is passed calculate fibonacci numbers for 0,5,10,15 and 20
-  ```
+  Accept one parameter and calculate fibonacci numbers iterativ and recursive
+
+  `fibonacci.sh [number]?`
+
+  * Default: If no argument is passed calculate fibonacci numbers for 0,5,10,15 and 20
+  * Hints: Use isInteger to check input
 
 * [findactivedevices.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/findactivedevices.sh)
 
@@ -64,18 +65,18 @@
 
   `findactivedevices.sh [local ipv4 network] like 192.168.0.0/24 or 192.168.178.0/24`
 
-  Hints: Use `map -sP "$1"` to scan network, use associative arrays and grep, use printf to enhance output format
-  Challenge: Accept an addtional option `-i` and `-n` and sort list according ip addresses or dns names,
+  * Hints: Use `map -sP "$1"` to scan network, use associative arrays and grep, use printf to enhance output format
+  * Challenge: Accept an addtional option `-i` and `-n` and sort list according ip addresses or dns names,
      Note: sort ips not alphabetically (default) but numerically
 
 * [testipv4.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/testipv4.sh)
 
-  Test if an IPv4 is valid and local or external.
+  Accept one parameter as an IPv4 address and check if is valid
   If no ipv4 is passed test 10.9.8.5 192.168.8.9 1.2.3.4 -4.6.7. 1.2.3.500 169.253.0.0
 
   `testipv4.sh [ipv4]?`
 
-   * Hints: Use indexed array, carefully test ipv4 with function isInteger
+   * Hints: Use indexed array, carefully test ipv4 with function isInteger, change IFS to "." to split nibbles
    * Challenge: Test if ip address is member of a private network, use switch statement
 
    * private networks

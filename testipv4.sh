@@ -65,20 +65,17 @@ isLocalIPv4() {                                                                 
 
     case "$1" in
 
-        10*)
+        10\.*)
             return 0
             ;;
-        172*)
-            (( nibbles[1] == 31 ))
-            return
+        172\.16\.*)
+            return 0
             ;;
-        192*)
-            (( nibbles[1] == 168 ))
-            return
+        192\.168\.*)
+            return 0
             ;;
-        169*)
-            (( nibbles[1] == 254 ))
-            return
+        169\.254\.*)
+            return 0
             ;;
         *)
             return 1
