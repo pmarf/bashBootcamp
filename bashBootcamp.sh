@@ -58,7 +58,7 @@ echo "Das ist eine\
 
 # Blockcommentare gibt es nicht aber einen workaround mit einem here doc
 
-:<<'SKIP'
+:<<SKIP
 Das ist irgendein Text
 der über mehrere Zeilen geht
 SKIP
