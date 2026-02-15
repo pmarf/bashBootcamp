@@ -12,7 +12,7 @@
 
 ## Sample exercises
 
-* [countfiles.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/countfiles.sh)
+* [countfiles.sh](https://github.com/pmarf/bashBootcamp/blob/main/countfiles.sh)
 
   Count number of files with a given extension in a directory tree passed as first argument and accept second argument for the search mask of find
 
@@ -27,7 +27,7 @@
   * Hints: Use find and wc
 
 
-* [countchars.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/countchars.sh)
+* [countchars.sh](https://github.com/pmarf/bashBootcamp/blob/main/countchars.sh)
 
   Count number of chars in a file and read filename from user and print the 10 most frequent chars with their percentage
 
@@ -42,7 +42,7 @@
      cat countchars.sh | countchars.sh => read from pipe
      ```
 
-* [substdigits.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/substdigits.sh)
+* [substdigits.sh](https://github.com/pmarf/bashBootcamp/blob/main/substdigits.sh)
 
   Read a file and replace digits 0-9 with their textual representation
 
@@ -50,7 +50,7 @@
 
    * Hints: Use read, associative array, here doc
 
-* [fibonacci.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/fibonacci.sh)
+* [fibonacci.sh](https://github.com/pmarf/bashBootcamp/blob/main/fibonacci.sh)
 
   Accept one parameter and calculate fibonacci numbers iterativ and recursive
 
@@ -59,7 +59,7 @@
   * Default: If no argument is passed calculate fibonacci numbers for 0,5,10,15 and 20
   * Hints: Use isInteger to check input
 
-* [findactivedevices.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/findactivedevices.sh)
+* [findactivedevices.sh](https://github.com/pmarf/bashBootcamp/blob/main/findactivedevices.sh)
 
   Scan local net for active systems and print their DNS name and IP address
 
@@ -69,7 +69,7 @@
   * Challenge: Accept an addtional option `-i` and `-n` and sort list according ip addresses or dns names
      **Note:** sort ips not alphabetically (default of sort command) but numerically
 
-* [testipv4.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/testipv4.sh)
+* [testipv4.sh](https://github.com/pmarf/bashBootcamp/blob/main/testipv4.sh)
 
   Accept one parameter as an IPv4 address and check if is valid
   If no ipv4 is passed test 10.9.8.5 192.168.8.9 1.2.3.4 -4.6.7. 1.2.3.500 169.253.0.0
@@ -87,7 +87,7 @@
    169.254.0.0 – 169.254.255.255 (Link-Local)
   ```
 
-* [weatherin.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/weatherin.sh)
+* [weatherin.sh](https://github.com/pmarf/bashBootcamp/blob/main/weatherin.sh)
 
   Retrieve weather information for a city
 
@@ -98,7 +98,7 @@
       use READONLY for URL locations of a city and temperature et al
   * Challenge: Use jq instead of grep to extract data from json doc returned by api calls
 
-* [highlow.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/highlow.sh)
+* [highlow.sh](https://github.com/pmarf/bashBootcamp/blob/main/highlow.sh)
 
   High low game
 
@@ -109,7 +109,7 @@
    * Challenge: Accept option `demo` and have the script to find the number with binary search,
        when user trial finishes let script use the binary search and compare number of trials of human and computer
 
-* [functions.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/functions.sh)
+* [functions.sh](https://github.com/pmarf/bashBootcamp/blob/main/functions.sh)
 
   Sourced file with helper functions and debug enhancement definition
 
