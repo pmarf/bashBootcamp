@@ -7,8 +7,8 @@
 1. Place helper functions in function.sh and source it
 1. Pass `shellcheck -x <filename>` without error messages
 
-## Final test
-* `shellcheck [!b]*.sh 2>/dev/null && echo "*** Verything passes checkshell ***" || echo "??? Some scripts fail checkshell ???"`
+## Final test of all scripts
+* `shellcheck [!b]*.sh 2>/dev/null && echo "*** OK ***" || echo "??? Fail ???"`
 
 ## Sample exercises
 
@@ -18,7 +18,7 @@
 
   `countfiles.sh [directory] [searchmask]?`
 
-  * Example 
+  * Example
     ```
     countfiles.sh ~/bashBootcamp
     countfiles.sh ~/bashBootcamp *.jpg
@@ -66,8 +66,8 @@
   `findactivedevices.sh [local ipv4 network] like 192.168.0.0/24 or 192.168.178.0/24`
 
   * Hints: Use `map -sP "$1"` to scan network, use associative arrays and grep, use printf to enhance output format
-  * Challenge: Accept an addtional option `-i` and `-n` and sort list according ip addresses or dns names    
-     **Note:** sort ips not alphabetically (default) but numerically
+  * Challenge: Accept an addtional option `-i` and `-n` and sort list according ip addresses or dns names
+     **Note:** sort ips not alphabetically (default of sort command) but numerically
 
 * [testipv4.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/testipv4.sh)
 
