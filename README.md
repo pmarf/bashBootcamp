@@ -14,20 +14,21 @@
 
 * [countfiles.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/countfiles.sh)
 
-  Count number of files with a given extension in a directory tree passed as first argument and accept second argument for the search mask of find 
+ Count number of files with a given extension in a directory tree passed as first argument and accept second argument for the search mask of find
+
   `countFiles.sh [directory] [searchmask]?`
 
-  * Default searchmask: *.sh
+  * Default searchmask: `*.sh`
   * Hints: Use find and wc
 
 * [countchars.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/countchars.sh)
 
   Count number of chars in a file read from ueser and print the 10 most frequent chars with thir percentage
-  
+
   `countchars.sh [filename]`
 
   * Hints: Use read, associative array, sort, head and use bash calculations
-  * Challenge: Allow script to accept input from stdin if no filename is passed as first argument via pipe
+  * Challenge: Allow script to accept input from stdin if no filename is passed as first argument via pipe  
      countchars.sh filename => read from file filename
      countchars.sh => read from console
      countchars.sh < filename => read from file filename (filename is used in stdin)
@@ -36,7 +37,7 @@
 * [substdigits.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/substdigits.sh)
 
   Replace digits 0-9 with their textual representation
-  
+ 
   `substdigits.sh [filename]`
 
    * Hints: Use read, associative array, here doc
@@ -52,13 +53,12 @@
 * [findactivedevices.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/findactivedevices.sh)
 
   Scan local net for active systems and print their DNS name and IP address
-  ```
-  findactivedevices.sh [local ipv4 network] like 192.168.0.0/24 or 192.168.178.0/24
+ 
+  `findactivedevices.sh [local ipv4 network] like 192.168.0.0/24 or 192.168.178.0/24`
 
   Hints: Use `map -sP "$1"` to scan network, use associative arrays and grep, use printf to enhance output format
   Challenge: Accept an addtional option `-i` and `-n` and sort list according ip addresses or dns names,
      Note: sort ips not alphabetically (default) but numerically
-  ```
 
 * [testipv4.sh](https://github.com/pmarf/bashBootcampSamplecode/blob/main/testipv4.sh)
 
