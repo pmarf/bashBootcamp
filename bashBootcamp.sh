@@ -41,18 +41,7 @@ if [[ "$*" =~ topics|all ]]; then
 	grep -E '# >>> .+ <<<' $0 | grep -v "grep"
 	echo
 fi
-if [[ "$*" =~ homework|all ]]; then
-	echo ">>> bash bootcamp homework <<<"
-	echo
-	for file in  [!b]*.sh; do
-		echo "--- $file ---"
-		grep ">>>" $file
-	done
-	echo
-	set -v
-	cloc --by-file [!b]*.sh
-	set +v
-fi
+
 if [[ "$1" =~ \-([?h]|\-help) ]]; then
 	echo "$0: [topics|homework|all]"
 	exit
