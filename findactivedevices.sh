@@ -22,70 +22,72 @@
 #
 #######################################################################################################################
 
-source functions.sh                                                         # source helperfunctions
+source functions.sh # source helperfunctions
 
-declare -A names                                                            # dictionary for the DNS names
-declare -A ips                                                              # dictionary for the IPs
+declare -A names # dictionary for the DNS names
+declare -A ips   # dictionary for the IPs
 
-if (( $# == 0 )); then
-    error "Missing subnet, e.g. 192.168.178.0/24 and optional args -i or -n"
+if (($# == 0)); then
+   error "Missing subnet, e.g. 192.168.178.0/24 and optional args -i or -n"
 fi
 
 if ! which nmap; then
-    error "nmap not found. Use 'sudo apt install nmap'"
+   error "nmap not found. Use 'sudo apt install nmap'"
 fi
 
 sortrequested=0
-if [[ -n "$2"&& ( "$2" == "-i" || "$2" == "-n" ) ]]; then                   # check if a second parameter was passed to define the sort sequence
-    sortrequested=1
-    sortrequest="$2"
+if [[ -n "$2" && ("$2" == "-i" || "$2" == "-n") ]]; then # check if a second parameter was passed to define the sort sequence
+   sortrequested=1
+   sortrequest="$2"
 fi
 
-while read -r line; do                                                      # process the result of nmap
+while read -r line; do # process the result of nmap
 
-    name="$(cut -f 5 -d " " <<< "$line")"                                   # extract name
-    ip="$(cut -f 6 -d " " <<< "$line" | tr -d '()')"                        # extract ip
-    if [[ -z "$name" ]]; then
-        name="N/A"
-    fi
-    if [[ -n "$name" && -n "$ip" ]]; then
-        names["$name"]="$ip"
-        ips["$ip"]="$name"
-        if (( ! sortrequested )); then
-            printf "%-50s: %10s\n" "$name" "$ip"
-        fi
-    fi
+   name="$(cut -f 5 -d " " <<<"$line")"            # extract name
+   ip="$(cut -f 6 -d " " <<<"$line" | tr -d '()')" # extract ip
+   if [[ -z "$name" ]]; then
+      name="N/A"
+   fi
+   if [[ -n "$name" && -n "$ip" ]]; then
+      names["$name"]="$ip"
+      ips["$ip"]="$name"
+      if ((!sortrequested)); then
+         printf "%-50s: %10s\n" "$name" "$ip"
+      fi
+   fi
 
-done < <(nmap -sP "$1" | grep -i "scan report")                             # scan the local network for active systems
-                                                                            # <( cmd ) creates a temporary file with the command result
-                                                                            # and < is the normal input redirection
+done < <(nmap -sP "$1" | grep -i "scan report") # scan the local network for active systems
+# <( cmd ) creates a temporary file with the command result
+# and < is the normal input redirection
 
-if (( sortrequested )); then
+if ((sortrequested)); then
 
-    sortfilename="$(mktemp)"                                                # create temporary filename in /tmp
+   sortfilename="$(mktemp)" # create temporary filename in /tmp
 
-    case $sortrequest in
+   case $sortrequest in
 
-    "-n") echo "name sorted"                                                # sort dictionary contents according name
-        for name in "${!names[@]}"; do
-            echo "$name" >> "$sortfilename"
-        done
+   "-n")
+      echo "name sorted" # sort dictionary contents according name
+      for name in "${!names[@]}"; do
+         echo "$name" >>"$sortfilename"
+      done
 
-        while read -r name; do
-            echo "$name: ${names["$name"]}"
-        done < <(sort "$sortfilename")
-        ;;
+      while read -r name; do
+         echo "$name: ${names["$name"]}"
+      done < <(sort "$sortfilename")
+      ;;
 
-    "-i") echo "IP sorted"                                                  # sort dictionary contents according IP
-        for ip in "${!ips[@]}"; do
-            echo "$ip" >> "$sortfilename"
-        done
+   "-i")
+      echo "IP sorted" # sort dictionary contents according IP
+      for ip in "${!ips[@]}"; do
+         echo "$ip" >>"$sortfilename"
+      done
 
-        while read -r ip; do
-            echo "$ip: ${ips["$ip"]}"
-        done < <(sort -V "$sortfilename")                                   # note option -V to sort the IPs the correct way ;-)
-        ;;
-    esac
+      while read -r ip; do
+         echo "$ip: ${ips["$ip"]}"
+      done < <(sort -V "$sortfilename") # note option -V to sort the IPs the correct way ;-)
+      ;;
+   esac
 
-    rm "$sortfilename"                                                      # cleanup
+   rm "$sortfilename" # cleanup
 fi

@@ -22,15 +22,15 @@
 #
 #######################################################################################################################
 
-source functions.sh                                                         # source some helperfunctions
+source functions.sh # source some helperfunctions
 
-declare -A translate                                                        # dictionary which gets the text for the digits 0-9
+declare -A translate # dictionary which gets the text for the digits 0-9
 
-while IFS='=' read -r digit text; do                                        # fill dictionary with text
-    if [[ -z $digit ]]; then
-        continue   # skip empty lines
-    fi
-    translate["$digit"]="$text"
+while IFS='=' read -r digit text; do # fill dictionary with text
+   if [[ -z $digit ]]; then
+      continue # skip empty lines
+   fi
+   translate["$digit"]="$text"
 done <<'EOF'
 0=zero
 1=one
@@ -44,22 +44,22 @@ done <<'EOF'
 9=nine
 EOF
 
-if (( $# == 0 )); then
-    error "Missing filename"
+if (($# == 0)); then
+   error "Missing filename"
 fi
 
 if [[ ! -e "$1" ]]; then
-    echo "$1 not found"
+   echo "$1 not found"
 fi
 
-while read -r line; do                                                      # read line by lien from file
-    for (( i=0; i<${#line}; i++ )); do                                      # now process every character in line
-        char=${line:i:1}
-        if [[ -v translate["$char"] ]]; then                                # if there is an entry in dictionary
-            echo -n "${translate["$char"]}"                                 # print the substituted text
-        else
-            echo -n "$char"                                                 # otherwise just print the char
-        fi
-    done
-    echo
-done < "$1"
+while read -r line; do                  # read line by lien from file
+   for ((i = 0; i < ${#line}; i++)); do # now process every character in line
+      char=${line:i:1}
+      if [[ -v translate["$char"] ]]; then # if there is an entry in dictionary
+         echo -n "${translate["$char"]}"   # print the substituted text
+      else
+         echo -n "$char" # otherwise just print the char
+      fi
+   done
+   echo
+done <"$1"

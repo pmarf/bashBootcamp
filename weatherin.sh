@@ -22,92 +22,92 @@
 #
 #######################################################################################################################
 
-source functions.sh                                                             # source helperfunctions
+source functions.sh # source helperfunctions
 
-readonly OPENSTREATMAP_URL="https://nominatim.openstreetmap.org"                # constants for the URLs
+readonly OPENSTREATMAP_URL="https://nominatim.openstreetmap.org" # constants for the URLs
 readonly OPENMETEO_URL="https://api.open-meteo.com"
 
-readonly DEBUG=o                                                                # set to 1 to enable debug output of received curl data
+readonly DEBUG=o # set to 1 to enable debug output of received curl data
 
-jqAvailable=0                                                                   # check whether jq is available
-if which jq > /dev/null; then   # sudo apt install jq
-    jqAvailable=1
-    echo "Using jq. Uninstall jq with 'sudo apt remove jq -y'"
+jqAvailable=0                # check whether jq is available
+if which jq >/dev/null; then # sudo apt install jq
+   jqAvailable=1
+   echo "Using jq. Uninstall jq with 'sudo apt remove jq -y'"
 else
-    echo "Using regex. Install jq with 'sudo apt inpstall jq -y'"
+   echo "Using regex. Install jq with 'sudo apt inpstall jq -y'"
 fi
 
 cityWeather() {
 
-    local city resultCity resultWeather latitude longitude temperature winddirection windspeed
-    if (( $# == 0 )); then
-        error "Missing city"
-    fi
+   local city resultCity resultWeather latitude longitude temperature winddirection windspeed
+   if (($# == 0)); then
+      error "Missing city"
+   fi
 
-    city="$1"
+   city="$1"
 
-    if ! resultCity="$(curl -s ${OPENSTREATMAP_URL}/search?q="$city"\&format=json\&limit=1)" \
-    	|| [[ "$resultCity" == "[]" ]] || [[ -z "$resultCity" ]]; then
-        error "$city not found"
-    fi
+   if ! resultCity="$(curl -s ${OPENSTREATMAP_URL}/search?q="$city"\&format=json\&limit=1)" ||
+      [[ "$resultCity" == "[]" ]] || [[ -z "$resultCity" ]]; then
+      error "$city not found"
+   fi
 
-    if (( DEBUG )); then
-        if (( jqAvailable )); then
-            jq <<< "$resultCity"
-        else
-            echo "$resultCity"
-        fi
-    fi
+   if ((DEBUG)); then
+      if ((jqAvailable)); then
+         jq <<<"$resultCity"
+      else
+         echo "$resultCity"
+      fi
+   fi
 
-    if (( jqAvailable )); then                                                          # use jq to extract fields form json
-        if ! latitude="$(jq -r .[0].lat <<< "$resultCity")"; then
-            error "Unable to parse $latitude"
-        fi
-        longitude="$(jq -r .[0].lon <<< "$resultCity")"
+   if ((jqAvailable)); then # use jq to extract fields form json
+      if ! latitude="$(jq -r .[0].lat <<<"$resultCity")"; then
+         error "Unable to parse $latitude"
+      fi
+      longitude="$(jq -r .[0].lon <<<"$resultCity")"
 
-    elif [[ "$resultCity" =~ \"lat\":\"([0-9\.]+)\".+\"lon\":\"([0-9\.]+)\" ]]; then    # use regex to extract the fields
-        latitude=${BASH_REMATCH[1]}
-        longitude=${BASH_REMATCH[2]}
-    else
-        error "Unable to find latitude and logitude for $city"
-    fi
+   elif [[ "$resultCity" =~ \"lat\":\"([0-9\.]+)\".+\"lon\":\"([0-9\.]+)\" ]]; then # use regex to extract the fields
+      latitude=${BASH_REMATCH[1]}
+      longitude=${BASH_REMATCH[2]}
+   else
+      error "Unable to find latitude and logitude for $city"
+   fi
 
-    echo -n "$city ($latitude,$longitude) => "
+   echo -n "$city ($latitude,$longitude) => "
 
-    if ! resultWeather="$(curl -s $OPENMETEO_URL/v1/forecast?latitude="$latitude"\&longitude="$longitude"\&current_weather=true)"; then
-        error "Weather data not found for $city"
-    fi
+   if ! resultWeather="$(curl -s $OPENMETEO_URL/v1/forecast?latitude="$latitude"\&longitude="$longitude"\&current_weather=true)"; then
+      error "Weather data not found for $city"
+   fi
 
-    if (( DEBUG )); then
-        if (( jqAvailable )); then # install with sudo apt install jq
-            jq <<< "$resultWeather"
-        else
-            echo "$resultWeather"
-        fi
-    fi
+   if ((DEBUG)); then
+      if ((jqAvailable)); then # install with sudo apt install jq
+         jq <<<"$resultWeather"
+      else
+         echo "$resultWeather"
+      fi
+   fi
 
-    if (( jqAvailable )); then
-        temperature="$(jq -r '.current_weather.temperature' <<< "$resultWeather")"
-        windspeed="$(jq -r '.current_weather.windspeed' <<< "$resultWeather")"
-        winddirection="$(jq -r '.current_weather.winddirection' <<< "$resultWeather")"
+   if ((jqAvailable)); then
+      temperature="$(jq -r '.current_weather.temperature' <<<"$resultWeather")"
+      windspeed="$(jq -r '.current_weather.windspeed' <<<"$resultWeather")"
+      winddirection="$(jq -r '.current_weather.winddirection' <<<"$resultWeather")"
 
-    elif [[ "$resultWeather" =~ \"temperature\":([\-0-9\.]+).+\"windspeed\":([0-9\.]+).+\"winddirection\":([0-9\.]+) ]]; then
-        temperature=${BASH_REMATCH[1]}
-        windspeed=${BASH_REMATCH[2]}
-        winddirection=${BASH_REMATCH[3]}
+   elif [[ "$resultWeather" =~ \"temperature\":([\-0-9\.]+).+\"windspeed\":([0-9\.]+).+\"winddirection\":([0-9\.]+) ]]; then
+      temperature=${BASH_REMATCH[1]}
+      windspeed=${BASH_REMATCH[2]}
+      winddirection=${BASH_REMATCH[3]}
 
-    else
-        error "Unable to find temp, windspeed and winddirection for $city"
-    fi
+   else
+      error "Unable to find temp, windspeed and winddirection for $city"
+   fi
 
-    echo "temp $temperature, windspeed $windspeed, winddirection $winddirection"
+   echo "temp $temperature, windspeed $windspeed, winddirection $winddirection"
 }
 
-if (( $# != 0 )); then
-    cityWeather "$1"
+if (($# != 0)); then
+   cityWeather "$1"
 else
-    cities="Hamburg Berlin Frankfurt Muenchen Kiew Peking"
-    for city in $cities; do
-        cityWeather "$city"
-    done
+   cities="Hamburg Berlin Frankfurt Muenchen Kiew Peking"
+   for city in $cities; do
+      cityWeather "$city"
+   done
 fi
