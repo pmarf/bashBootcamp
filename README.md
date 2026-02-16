@@ -24,7 +24,7 @@
     ```
   * Default searchmask: `*.sh`
   * Hints: Use find and wc
-  * Challenge: Extend the script to find all files with extension jpg and extract the exif information, use identify from the imagemagick package (sudo apt install imagemagick)
+  * Challenge: Extend the script to find all files with an extension (default jpg) and extract the exif information, use identify tool from the imagemagick package (sudo apt install imagemagick)
 
 
 * [countchars.sh](https://github.com/pmarf/bashBootcamp/blob/main/countchars.sh)
