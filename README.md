@@ -115,25 +115,26 @@
   Sourced file with helper functions and debug enhancement definition
 
 ```
-cloc --by-file [!b]*.sh
-       9 text files.
-       9 unique files.
+loc --by-file [!b]*.sh
+      10 text files.
+      10 unique files.
        0 files ignored.
 
-github.com/AlDanial/cloc v 1.98  T=0.01 s (672.4 files/s, 53642.9 lines/s)
+github.com/AlDanial/cloc v 1.98  T=0.01 s (1419.1 files/s, 106429.2 lines/s)
 ----------------------------------------------------------------------------------
 File                                blank        comment           code
 ----------------------------------------------------------------------------------
 highlow.sh                             15             23             81
 weatherin.sh                           19             22             72
-testipv4.sh                            16             28             65
-findactivedevices.sh                   16             24             51
-fibonacci.sh                           11             22             42
+testipv4.sh                            16             28             59
+findactivedevices.sh                   16             24             53
+fibonacci.sh                           10             22             48
 countchars.sh                          14             22             37
 substdigits.sh                          6             22             37
+countfiles.sh                          11             23             22
 functions.sh                            3             22             13
-countfiles.sh                           4             23              8
+formatCode.sh                           3              1              6
 ----------------------------------------------------------------------------------
-SUM:                                  104            208            406
+SUM:                                  113            209            428
 ----------------------------------------------------------------------------------
 ```
