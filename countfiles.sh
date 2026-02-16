@@ -24,12 +24,28 @@
 
 source functions.sh # source helperfunctions
 
-if (($# < 1)); then
-   error "Missing directory and optional extension"
+ONELINER=0
+
+if (( ONELINE )); then
+
+   if (($# < 1)); then
+      error "Missing directory and optional extension"
+   fi
+
+   directory="$1"
+   extension="${2:-"*.sh"}" # set extension to *.sh if no second parameter was passed
+
+   # find all files with passed extension case insensitive and count number of lines reurned by find
+   echo "Found $(find "$directory" -iname "$extension" | wc -l) files with extension $extension in $directory"
+else
+   if (($# < 1)); then
+      error "Missing directory and optional extension"
+   fi
+   directory="$1"
+   extension="${2:-"*.jpg"}" # set extension to *.jpg if no second parameter was passed
+
+   while read -r file; do
+	   echo "Processing $file ..."
+	   identify -verbose "$file" | grep exif
+   done < <(find "$directory" -iname "$extension")
 fi
-
-directory="$1"
-extension="${2:-"*.sh"}" # set extension to "*.sh if no second parameter was passed
-
-# find all files with passed extension case insensitive and count number of lines reurned by find
-echo "Found $(find "$directory" -iname "$extension" | wc -l) files with extension $extension in $directory"
