@@ -36,15 +36,9 @@
   * Hints: Use read, associative array, sort, head and use bash calculations
   * Challenge: Allow script to accept input from stdin if no filename is passed as first argument via pipe
      ```
-<<<<<<< HEAD
-     countchars.sh filename => read from file filename
-     countchars.sh => read from console
-     countchars.sh < filename => read from file filename (filename is used in stdin)
-=======
      countchars.sh filename => read from file filename without prompt, test: "countchars.sh countchars.sh"
      countchars.sh => read from console, test: "countchars.sh", enter some data and end input with <CTRL D>
      countchars.sh < filename => read from file filename (filename is used in stdin), test: "countchars.sh < countchars.sh"
->>>>>>> origin/main
      cat countchars.sh | countchars.sh => read from pipe
      ```
 
@@ -85,22 +79,14 @@
    * Hints: Use indexed array, carefully test ipv4 with function isInteger, change IFS to "." to split nibbles
    * Challenge: Test if ip address is member of a private network, use switch statement with bash patterns
 
-<<<<<<< HEAD
-   * private networks
-```
-   10.0.0.0 – 10.255.255.255 (Klasse A)
-   172.16.0.0 – 172.31.255.255 (Klasse B)
-   192.168.0.0 – 192.168.255.255 (Klasse C)
-=======
-```
+   ```
    --- private networks ---
 
    10.0.0.0 – 10.255.255.255 (Class A)
    172.16.0.0 – 172.31.255.255 (Class B)
    192.168.0.0 – 192.168.255.255 (Class C)
->>>>>>> origin/main
    169.254.0.0 – 169.254.255.255 (Link-Local)
-  ```
+   ```
 
 * [weatherin.sh](https://github.com/pmarf/bashBootcamp/blob/main/weatherin.sh)
 
