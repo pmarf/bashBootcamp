@@ -104,7 +104,7 @@ ls /home
 cd /home; ls -la
 # oder ein Verzeichnis nach oben
 cd ..
-# Heimatverzeichnis ist ~ und das aktuelle Verzeichnis ist .
+# Heimatverzeichnis ist ~ (Tilde) und das aktuelle Verzeichnis ist . (Period)
 cd ~
 ls -la .
 
@@ -156,6 +156,30 @@ for word in "$text"; do
   echo "$word"
 done
 # macht kein Text splitting - wichtig bei Variablennutzung in Scripts diese in " ... " zu schreiben
+
+# >>> Brace expansion
+
+echo {file-1,file-2{a,b},file-3}
+file-1 file-2a file-2b file-3
+
+echo {a..e}
+a b c d e
+echo {10..1}
+10 9 8 7 6 5 4 3 2 1
+echo {a..c}{1..4} 
+a1 a2 a3 a4 b1 b2 b3 b4 c1 c2 c3 c4
+
+mkdir /usr/local/src/{old,new,dist,bugs}
+# creates /usr/local/old, /usr/local/new, /usr/local/dist und /usr/local/bugs
+
+# >>> Sequence of substitutions
+
+# 1. Brace expansion
+# 2. Tilde expansion
+# 3. Parameter & variable expansion ${...}, command substitution $( ... ), arithmetic expansion $(( ... ))
+# 4. Word splitting
+# 5. Filename expansion (globbing)
+# 6. Quote removal
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
