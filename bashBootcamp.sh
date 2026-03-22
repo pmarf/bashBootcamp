@@ -26,7 +26,7 @@
 #   Zu den meisten Befehlen gibt es eine direkte Hilfe mit man <Befehl>, z.B. man ls
 #   Ausserdem gibt es help <builtin command> wie z.B. help echo, help printf, help export
 #
-# Ausserdem helfen Suchmaschinen wie auch Tools wie chatGPT
+#   Ausserdem helfen Suchmaschinen wie auch Tools wie chatGPT
 
 ###########################################################################################
 #
@@ -50,6 +50,32 @@ if (( $# > 0 )); then
 	exit 0
 fi
 
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#
+# >>> Historie <<<
+#
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# Shells sind die Konsolenumgebung unter Unix in der man sich nach dem Login befindet.
+# Sie ermöglichen ein System zu manuell und programmatisch zu administrieren.
+#
+# Es gibt verschiedene Shells
+# - Bourne Shell (/bin/sh) von Bell Labs für Unix (Proprietär)
+# - GNU Bourne-Again-Shell (bash) geschrieben von Brian Fox 1987 für das GNU Projekt
+#      als freie Weiterentwicklung (GPL) von der Bourne Shell und ist de facto 
+#      die Standard shell auf Linux als interacktive Shell
+# - C-shell (csh) von der University of California (BSD Lizenz)
+# - Korn-Shell (ksh) von Bell Labs als Verbesserung der Bourne Shell (Proprietär)
+# - Z-Shell (zsh) ist eine sehr mächtige Erweiterung von Bourne Shell (MIT Lizenz)
+# - Dash (Debian-Almquist-shell) ist kleiner und schneller als bash aber nicht so mächtig
+#      Wird oft als nicht interaktive Shell genutzt (BSD Lizenz)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#
+# >>> Kommentare <<<
+#
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 # Kommentare beginnen mit # an beliebiger Stelle. Alles folgende wird ignoriert
 # Zeilenfortsetzung mit \ als letztes Zeichen in einer Zeile
 
@@ -62,6 +88,8 @@ echo "Das ist eine\
 Das ist irgendein Text
 der über mehrere Zeilen geht
 SKIP
+
+# : ist in bash ein noop was immer true zurückliefert 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
@@ -784,6 +812,8 @@ EOF
 # String heredoc <<<
 
 wc -c <<< "Hello world" # counts number of chars
+
+# Nutzung statt cat "Hello world" | wc -c
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
