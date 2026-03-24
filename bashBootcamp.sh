@@ -2,7 +2,7 @@
 #
 # bash programming bootcamp
 #
-# Copyright (c) 2026 https://github.com/pmarf/bashBootcamp
+# Copyright (c) 2026 https://github.com/pmarf
 #
 # References
 #

@@ -1,35 +1,34 @@
 # bash bootcamp exercises
 
-Copyright (c) 2026 https://github.com/pmarf/bashBootcamp
+Copyright (c) 2026 https://github.com/pmarf
 
 ## General
 
-1. Verify all user input
+1. Have a minmal user input verification
 1. Write short error message to stderr with helper function in case of an error
 1. Place helper functions in function.sh and source it
 1. Use `shellcheck -x <filename>` and correct any findings
-1. Follow standard C/C++ identation rules
+1. Follow standard C/C++ identation rules (shfmt -i 3 *.sh) will do this for you
 1. Execute `shellcheck [!b]*.sh 2>/dev/null && echo "*** OK ***" || echo "??? Fail ???"` to check all scripts
 
 ## Exercises
 
-* [countfiles.sh](https://github.com/pmarf/bashBootcamp/blob/main/countfiles.sh)
+### 1. [countfiles.sh](https://github.com/pmarf/bashBootcamp/blob/main/countfiles.sh)
 
   Count number of files with a given extension in a directory tree passed as first argument and accept second argument for the search mask of find
 
   `countfiles.sh [directory] [searchmask]?`
 
   * Example
-    ```
-    countfiles.sh ~/bashBootcamp
-    countfiles.sh ~/bashBootcamp *.jpg
-    ```
+  ```
+  countfiles.sh ~/bashBootcamp
+  countfiles.sh ~/bashBootcamp *.jpg
+  ```
   * Default searchmask: `*.sh`
   * Hints: Use find and wc
   * Challenge: Extend the script to find all files with an extension (default jpg) and extract the exif information, use identify tool from the imagemagick package (sudo apt install imagemagick)
 
-
-* [countchars.sh](https://github.com/pmarf/bashBootcamp/blob/main/countchars.sh)
+### 2. [countchars.sh](https://github.com/pmarf/bashBootcamp/blob/main/countchars.sh)
 
   Count number of chars in a file and read filename from user and print the 10 most frequent chars with their percentage
 
@@ -44,7 +43,7 @@ Copyright (c) 2026 https://github.com/pmarf/bashBootcamp
      cat countchars.sh | countchars.sh => read from pipe
      ```
 
-* [substdigits.sh](https://github.com/pmarf/bashBootcamp/blob/main/substdigits.sh)
+### 3. [substdigits.sh](https://github.com/pmarf/bashBootcamp/blob/main/substdigits.sh)
 
   Read a file and replace digits 0-9 with their textual representation
 
@@ -52,7 +51,7 @@ Copyright (c) 2026 https://github.com/pmarf/bashBootcamp
 
    * Hints: Use read, associative array, here doc
 
-* [fibonacci.sh](https://github.com/pmarf/bashBootcamp/blob/main/fibonacci.sh)
+### 4. [fibonacci.sh](https://github.com/pmarf/bashBootcamp/blob/main/fibonacci.sh)
 
   Accept one parameter and calculate fibonacci numbers iterativ and recursive
 
@@ -61,7 +60,7 @@ Copyright (c) 2026 https://github.com/pmarf/bashBootcamp
   * Default: If no argument is passed calculate fibonacci numbers for 0,5,10,15 and 20
   * Hints: Use isInteger to check input
 
-* [findactivedevices.sh](https://github.com/pmarf/bashBootcamp/blob/main/findactivedevices.sh)
+### 5. [findactivedevices.sh](https://github.com/pmarf/bashBootcamp/blob/main/findactivedevices.sh)
 
   Scan local net for active systems and print their DNS name and IP address
 
@@ -71,7 +70,7 @@ Copyright (c) 2026 https://github.com/pmarf/bashBootcamp
   * Challenge: Accept an addtional option `-i` and `-n` and sort list according ip addresses or dns names
      **Note:** sort ips not alphabetically (default of sort command) but numerically
 
-* [testipv4.sh](https://github.com/pmarf/bashBootcamp/blob/main/testipv4.sh)
+### 6. [testipv4.sh](https://github.com/pmarf/bashBootcamp/blob/main/testipv4.sh)
 
   Accept one parameter as an IPv4 address and check if is valid
   If no ipv4 is passed test 10.9.8.5 192.168.8.9 1.2.3.4 -4.6.7. 1.2.3.500 169.253.0.0
@@ -90,7 +89,7 @@ Copyright (c) 2026 https://github.com/pmarf/bashBootcamp
    169.254.0.0 – 169.254.255.255 (Link-Local)
    ```
 
-* [weatherin.sh](https://github.com/pmarf/bashBootcamp/blob/main/weatherin.sh)
+### 7. [weatherin.sh](https://github.com/pmarf/bashBootcamp/blob/main/weatherin.sh)
 
   Retrieve weather information for a city
 
@@ -101,7 +100,7 @@ Copyright (c) 2026 https://github.com/pmarf/bashBootcamp
       use READONLY for URL locations of a city and temperature et al
   * Challenge: Use jq instead of grep to extract data from json doc returned by api calls
 
-* [highlow.sh](https://github.com/pmarf/bashBootcamp/blob/main/highlow.sh)
+### 8. [highlow.sh](https://github.com/pmarf/bashBootcamp/blob/main/highlow.sh)
 
   High low game
 
@@ -112,7 +111,7 @@ Copyright (c) 2026 https://github.com/pmarf/bashBootcamp
    * Challenge: Accept option `demo` and have the script to find the number with binary search,
        when user trial finishes let script use the binary search and compare number of trials of human and computer
 
-* [functions.sh](https://github.com/pmarf/bashBootcamp/blob/main/functions.sh)
+### 9. [functions.sh](https://github.com/pmarf/bashBootcamp/blob/main/functions.sh)
 
   Sourced file with helper functions and debug enhancement definition
 
@@ -122,21 +121,20 @@ cloc --by-file [!b]*.sh
       10 unique files.
        0 files ignored.
 
-github.com/AlDanial/cloc v 1.98  T=0.01 s (1419.1 files/s, 106429.2 lines/s)
+github.com/AlDanial/cloc v 1.98  T=0.01 s (1150.2 files/s, 86382.1 lines/s)
 ----------------------------------------------------------------------------------
 File                                blank        comment           code
 ----------------------------------------------------------------------------------
-highlow.sh                             15             23             81
-weatherin.sh                           19             22             72
-testipv4.sh                            16             28             59
-findactivedevices.sh                   16             24             53
-fibonacci.sh                           10             22             48
-countchars.sh                          14             22             37
-substdigits.sh                          6             22             37
-countfiles.sh                          11             23             22
+highlow.sh                             15             24             81
+weatherin.sh                           19             23             72
+testipv4.sh                            16             29             59
+findactivedevices.sh                   16             25             53
+fibonacci.sh                           10             23             48
+countchars.sh                          15             22             37
+substdigits.sh                          6             23             37
+countfiles.sh                           9             24             17
 functions.sh                            3             22             13
-formatCode.sh                           3              1              6
 ----------------------------------------------------------------------------------
-SUM:                                  113            209            428
+SUM:                                  112            216            423
 ----------------------------------------------------------------------------------
 ```
