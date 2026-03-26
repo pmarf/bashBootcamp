@@ -851,7 +851,7 @@ unset IFS						# reset IFS to default
 IFS="."
 V="This.is.a.test"
 read -a array <<< $V
-for e in "${V[@]}"; do
+for e in "${array[@]}"; do
    echo $e
 done
 unset IFS						# reset IFS to default
