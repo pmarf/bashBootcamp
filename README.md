@@ -1,19 +1,29 @@
-# bash bootcamp exercises
+# Small bash bootcamp - bash in general and programming in particular
 
 Copyright (c) 2026 https://github.com/pmarf
 
-## General
+## Quick theoretical introduction with tips and tricks
+
+Read carefully [bashBootcamp.sh](https://raw.githubusercontent.com/pmarf/bashBootcamp/refs/heads/main/bashBootcamp.sh)
+
+## Implement following exercises
+
+1. You don't have to implement all exercises. Just start with #1 (the easiest one) and continue with next execises. Try to get at least the first 3 done with any help available (man pages, internet pages, search machines) but don't peek at the sample implementations
+1. Some exercises have optional challenging requirements which may or may not be implemented 
+1. Lookup the provided sample exercises as an example how to get the tasks done when you're stuck and have no idea how to get working example code or when you're finally done
+
+### General exercise rules
 
 1. Have a minmal user input verification
 1. Write short error message to stderr with helper function in case of an error
-1. Place helper functions in function.sh and source it
+1. Place helper functions in `function.sh` and source it
 1. Use `shellcheck -x <filename>` and correct any findings
 1. Follow standard C/C++ identation rules (shfmt -i 3 *.sh) will do this for you
 1. Execute `shellcheck [!b]*.sh 2>/dev/null && echo "*** OK ***" || echo "??? Fail ???"` to check all scripts
 
-## Exercises
+### Exercises
 
-### 1. [countfiles.sh](https://github.com/pmarf/bashBootcamp/blob/main/countfiles.sh)
+#### 1. [countfiles.sh](https://github.com/pmarf/bashBootcamp/blob/main/countfiles.sh)
 
   Count number of files with a given extension in a directory tree passed as first argument and accept second argument for the search mask of find
 
@@ -28,7 +38,7 @@ Copyright (c) 2026 https://github.com/pmarf
   * Hints: Use find and wc
   * Challenge: Extend the script to find all files with an extension (default jpg) and extract the exif information, use identify tool from the imagemagick package (sudo apt install imagemagick)
 
-### 2. [countchars.sh](https://github.com/pmarf/bashBootcamp/blob/main/countchars.sh)
+#### 2. [countchars.sh](https://github.com/pmarf/bashBootcamp/blob/main/countchars.sh)
 
   Count number of chars in a file and read filename from user and print the 10 most frequent chars with their percentage
 
@@ -43,7 +53,7 @@ Copyright (c) 2026 https://github.com/pmarf
      cat countchars.sh | countchars.sh => read from pipe
      ```
 
-### 3. [substdigits.sh](https://github.com/pmarf/bashBootcamp/blob/main/substdigits.sh)
+#### 3. [substdigits.sh](https://github.com/pmarf/bashBootcamp/blob/main/substdigits.sh)
 
   Read a file and replace digits 0-9 with their textual representation
 
@@ -51,16 +61,7 @@ Copyright (c) 2026 https://github.com/pmarf
 
    * Hints: Use read, associative array, here doc
 
-### 4. [fibonacci.sh](https://github.com/pmarf/bashBootcamp/blob/main/fibonacci.sh)
-
-  Accept one parameter and calculate fibonacci numbers iterativ and recursive
-
-  `fibonacci.sh [number]?`
-
-  * Default: If no argument is passed calculate fibonacci numbers for 0,5,10,15 and 20
-  * Hints: Use isInteger to check input
-
-### 5. [findactivedevices.sh](https://github.com/pmarf/bashBootcamp/blob/main/findactivedevices.sh)
+#### 4. [findactivedevices.sh](https://github.com/pmarf/bashBootcamp/blob/main/findactivedevices.sh)
 
   Scan local net for active systems and print their DNS name and IP address
 
@@ -70,7 +71,7 @@ Copyright (c) 2026 https://github.com/pmarf
   * Challenge: Accept an addtional option `-i` and `-n` and sort list according ip addresses or dns names
      **Note:** sort ips not alphabetically (default of sort command) but numerically
 
-### 6. [testipv4.sh](https://github.com/pmarf/bashBootcamp/blob/main/testipv4.sh)
+#### 5. [testipv4.sh](https://github.com/pmarf/bashBootcamp/blob/main/testipv4.sh)
 
   Accept one parameter as an IPv4 address and check if is valid
   If no ipv4 is passed test 10.9.8.5 192.168.8.9 1.2.3.4 -4.6.7. 1.2.3.500 169.253.0.0
@@ -89,7 +90,7 @@ Copyright (c) 2026 https://github.com/pmarf
    169.254.0.0 – 169.254.255.255 (Link-Local)
    ```
 
-### 7. [weatherin.sh](https://github.com/pmarf/bashBootcamp/blob/main/weatherin.sh)
+#### 6. [weatherin.sh](https://github.com/pmarf/bashBootcamp/blob/main/weatherin.sh)
 
   Retrieve weather information for a city
 
@@ -100,7 +101,16 @@ Copyright (c) 2026 https://github.com/pmarf
       use READONLY for URL locations of a city and temperature et al
   * Challenge: Use jq instead of grep to extract data from json doc returned by api calls
 
-### 8. [highlow.sh](https://github.com/pmarf/bashBootcamp/blob/main/highlow.sh)
+#### 7. [fibonacci.sh](https://github.com/pmarf/bashBootcamp/blob/main/fibonacci.sh)
+
+  Accept one parameter and calculate [fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_sequence) iterativ and recursive
+
+  `fibonacci.sh [number]?`
+
+  * Default: If no argument is passed calculate fibonacci numbers for 0,5,10,15 and 20
+  * Hints: Use isInteger to check input
+
+#### 8. [highlow.sh](https://github.com/pmarf/bashBootcamp/blob/main/highlow.sh)
 
   High low game
 
@@ -110,10 +120,6 @@ Copyright (c) 2026 https://github.com/pmarf
    * Hints: Use RANDOM, use isInteger function to check for valid input
    * Challenge: Accept option `demo` and have the script to find the number with binary search,
        when user trial finishes let script use the binary search and compare number of trials of human and computer
-
-### 9. [functions.sh](https://github.com/pmarf/bashBootcamp/blob/main/functions.sh)
-
-  Sourced file with helper functions and debug enhancement definition
 
 ```
 cloc --by-file [!b]*.sh
@@ -133,7 +139,6 @@ fibonacci.sh                           10             23             48
 countchars.sh                          15             22             37
 substdigits.sh                          6             23             37
 countfiles.sh                           9             24             17
-functions.sh                            3             22             13
 ----------------------------------------------------------------------------------
 SUM:                                  112            216            423
 ----------------------------------------------------------------------------------

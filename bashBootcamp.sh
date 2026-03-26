@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+# oder allgemeiner
 #!/bin/env bash
 #
 # bash programming bootcamp
@@ -13,14 +15,6 @@
 # - Bash Scripting Exercises and Solutions: https://www.w3resource.com/bash-script-exercises/index.php
 # - man bash
 # - man bash-builtin
-#
-# - Gutes Checktool (linter) für bash: shellcheck
-#	sudo apt install shellcheck
-#	https://github.com/koalaman/shellcheck/wiki/<shellcheckmessageid> liefert eine detailierte Beschreibung
-#       zu der Meldungsnummer und warum die Meldung geschrieben wurde und wie sie zu beseitigen ist
-#
-# - Formatierungstool
-#   shfmt -i 3 *.sh (sudo apt install shfmt)
 #
 # - Hilfe
 #   Zu den meisten Befehlen gibt es eine direkte Hilfe mit man <Befehl>, z.B. man ls
@@ -63,7 +57,7 @@ fi
 # - Bourne Shell (/bin/sh) von Bell Labs für Unix (Proprietär)
 # - GNU Bourne-Again-Shell (bash) geschrieben von Brian Fox 1987 für das GNU Projekt
 #      als freie Weiterentwicklung (GPL) von der Bourne Shell und ist de facto 
-#      die Standard shell auf Linux als interacktive Shell
+#      die Standard shell auf Linux als interaktive Shell
 # - C-shell (csh) von der University of California (BSD Lizenz)
 # - Korn-Shell (ksh) von Bell Labs als Verbesserung der Bourne Shell (Proprietär)
 # - Z-Shell (zsh) ist eine sehr mächtige Erweiterung von Bourne Shell (MIT Lizenz)
@@ -163,6 +157,7 @@ chmod +x bashBootcamp.sh # setzen des executebits
 # * beliebige Zeichen, ? exakt ein Zeichen, [a-z] Character class
 # Anzeige aller Dateien im aktuellen Verzeichnis die mit bash beginnen
 # Achtung auf Sonderzeichen
+# Kein globbing findet statt wenn Anführungszeichen genutzt werden
 ls ./bash*
 ls *.sh
 ls Unter[xv]erzeichnis
@@ -173,6 +168,7 @@ rmdir Unterxerzeichnis2
 # >>> Text splitting <<<
 
 # Texte werden gemäß des Separators IFS zerlegt. Standard ist Space, Tab und LF
+# Steht der String in Anführungszeichen wird der Text nicht gesplittet
 text="eins zwei drei"
 
 echo "$text"
@@ -277,9 +273,9 @@ ls *Boot*
 # mv - Dateien moven
 # rename - Umbenennen von Dateien
 # rm - Dateien löschen
-# rsync - Dateisynchornisation
+# rsync - Dateisynchronisation
 # script - Terminalsitzung in einer Datei mitschneiden
-# sed - Niciht interaktiver Zeileneditor
+# sed - Nicht interaktiver Zeileneditor
 # sleep - Pausieren
 # sort - sortieren von Dateiinhalten
 # sudo - temporäres Ausführen von Befehlen als root
@@ -296,7 +292,8 @@ grep "#>>>>>>>" ./bashBootcamp.sh | wc -l
 # Zähle wie viele Shellscripts es gibt
 find -iname "*.sh" | wc -l
 # Suche in allen shell scripts nach dem Text "if" aber nicht kniff o.ä.
-find -iname "*.sh" | xargs grep -H "\bif\b" | grep wc -l
+find -iname "*.sh" | xargs grep -H "\bif\b" | grep wc -lfind -iname "*.sh" | xargs grep -H "\bif\b" | grep wc -l
+
 # oder
 find -iname "*.sh" -exec grep -H "\bif\b" '{}' \; | wc -l
 
@@ -370,7 +367,7 @@ echo "$PWD"
 # Interner Feldseparator (Default: Space, tab und newline)
 echo -n "$IFS" | xxd # Ausgabe in hex
 # Suchpfad
-echo "$PWD"
+echo "$PATH"
 # Command prompt string
 echo "$PS1"
 # Aufrufargumente
@@ -394,7 +391,6 @@ p() {
 	done
 }
 p "eins" "zwei" "drei"
-# Achtung: " nutzen da sonst bash Word splitting erfolgt und das Ergebnis anders aussieht
 p "eins zwei drei"
 
 ###########################################################################################
@@ -402,6 +398,14 @@ p "eins zwei drei"
 # ### Programmierung ###
 #
 ###########################################################################################
+
+# - Gutes Checktool (linter) für bash: shellcheck
+#	sudo apt install shellcheck
+#	https://github.com/koalaman/shellcheck/wiki/<shellcheckmessageid> liefert eine detailierte Beschreibung
+#       zu der Meldungsnummer und warum die Meldung geschrieben wurde und wie sie zu beseitigen ist
+#
+# - Formatierungstool
+#   shfmt -i 3 *.sh (sudo apt install shfmt)
 
 # Verbreitete Editoren:
 # - vim (cmdline)
@@ -429,11 +433,13 @@ chmod +x bashBootcamp.sh
 VARIABLE1="Hello world"
 VARIABLE2="${VARIABLE1}"
 VARIABLE3=${VARIABLE1}
+VARIABLE4="$VARIABLE1"
+
 # Variablenwerte sollten möglichst immer in " eingeschlossen werden
 # - Schutz vor word splitting (IFS variable definiert splitting char, default ist Leerzeichen, tab und newline)
 
 f() {
-	echo "$1 - Parms $#"
+	echo "$1 - Parm#: $# Parms: $@"
 }
 f 1q "$VARIABLE1"
 f 1  $VARIABLE1
@@ -464,11 +470,12 @@ echo "$PTR"
 
 # Basis Syntaxelemente
 # - Text: "Hello world" oder 'Hello world'
-#   Bei " werden Sonderzeichen der bash interpretiert. Speziell das $ mit welchem Variablen beginnen. D.h. Variablennamem werden expandiert. Bei ' findet keine Interpretation statt
+#   Bei " werden Sonderzeichen der bash interpretiert. Speziell das $ mit welchem Variablen beginnen. 
+#       D.h. Variablennamem werden expandiert. Bei ' findet keine Interpretation statt
 # - Zahlen: Nur ganze Zahlen
 #   Zahlenbasen: 0x42 - hexadezimal, 042 - oktal
 
-# Rechnen (keine $ notwendig ei Variablen)
+# Rechnen (keine $ notwendig bei Variablen)
 
 i=0
 (( i=i+1 ))
