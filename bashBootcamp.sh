@@ -16,15 +16,15 @@
 # - man bash
 # - man bash-builtin
 #
-# - Hilfe
-#   Zu den meisten Befehlen gibt es eine direkte Hilfe mit man <Befehl>, z.B. man ls
-#   Ausserdem gibt es help <builtin command> wie z.B. help echo, help printf, help export
+# - Help
+#   For most commands there exists direct help with "man <command>", for example "man ls"
+#   In addition "help <builtin command>" wie z.B. for example "help echo", "help printf", "help export"
 #
-#   Ausserdem helfen Suchmaschinen wie auch Tools wie chatGPT
+#   Any web search engine will help. In addition any KI like chatGPT
 
 ###########################################################################################
 #
-# ### Navigation und bash Basics ###
+# ### Navigation and bash basics ###
 #
 ###########################################################################################
 
@@ -46,130 +46,131 @@ fi
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Historie <<<
+# >>> History <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Shells sind die Konsolenumgebung unter Unix in der man sich nach dem Login befindet.
-# Sie ermöglichen ein System zu manuell und programmatisch zu administrieren.
+# Shells are the console environments in Unix that you find yourself in after logging in.
+# They allow you to administer a system manually and programmatically.
 #
-# Es gibt verschiedene Shells
-# - Bourne Shell (/bin/sh) von Bell Labs für Unix (Proprietär)
-# - GNU Bourne-Again-Shell (bash) geschrieben von Brian Fox 1987 für das GNU Projekt
-#      als freie Weiterentwicklung (GPL) von der Bourne Shell und ist de facto 
-#      die Standard shell auf Linux als interaktive Shell
-# - C-shell (csh) von der University of California (BSD Lizenz)
-# - Korn-Shell (ksh) von Bell Labs als Verbesserung der Bourne Shell (Proprietär)
-# - Z-Shell (zsh) ist eine sehr mächtige Erweiterung von Bourne Shell (MIT Lizenz)
-# - Dash (Debian-Almquist-shell) ist kleiner und schneller als bash aber nicht so mächtig
-#      Wird oft als nicht interaktive Shell genutzt (BSD Lizenz)
+# There are various shells
+# - Bourne Shell (/bin/sh) from Bell Labs for Unix (proprietary)
+# - GNU Bourne-Again Shell (bash), written by Brian Fox in 1987 for the GNU Project
+#      as a free (GPL) extension of the Bourne Shell and is de facto 
+#      the standard interactive shell on Linux
+# - C-shell (csh) from the University of California (BSD license)
+# - Korn Shell (ksh) from Bell Labs as an improvement on the Bourne Shell (proprietary)
+# - Z-Shell (zsh) is a very powerful extension of the Bourne Shell (MIT License)
+# - Dash (Debian-Almquist-shell) is smaller and faster than bash but not as powerful
+#      Often used as a non-interactive shell (BSD License)
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Kommentare <<<
+# >>> Comments <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Kommentare beginnen mit # an beliebiger Stelle. Alles folgende wird ignoriert
-# Zeilenfortsetzung mit \ als letztes Zeichen in einer Zeile
+# Comments begin with # anywhere in the line. Everything that follows is ignored
+# Line continuation using \ as the last character in a line
 
-echo "Das ist eine\
-         Demo der Zeilenfortsetzung mit vielen Spaces"
+echo "This is a\
+         demo of line continuation using many spaces"
 
-# Blockcommentare gibt es nicht aber einen workaround mit einem here doc
+# There are no block comments, but there is a workaround using a here doc
 
 :<<SKIP
-Das ist irgendein Text
-der über mehrere Zeilen geht
+This is some text
+that spans multiple lines
 SKIP
 
-# : ist in bash ein noop was immer true zurückliefert 
+# : is in bash a noop which returns true all the time
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Tastatur Quickies <<<
+# >>> Keyboard quickies <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# <TAB> expandiert bei Dateinamen soweit wie möglich und zeigt die restlichen Alternativen an
-# <CTRL R> text, sucht in der bash History nach dem text
-# <ARROW UP/DOWN> blättert in der bash History
+# <TAB> expands filenames as far as possible and display all other files starting with the entered string
+# <CTRL R> text, search in bash history for any command with the given text
+# <ARROW UP/DOWN> retrieve previous and next command in history
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Verzeichnisse <<<
+# >>> Directories <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 # FSH - file system hierarchy
 
-/bin - Binärdateien/Befehle
-/dev - Gerätedateien
-/etc - Systemkonfigurationsdateien
-/lib - Bibliotheken
-/media - Mountpoint für Wechseldatenträger
-/mnt - Temporär eingehängtes Dateisystem
-/opt - Anwendungsprogramme
-/sbin - Binärdateien für das System
-/tmp - Temporäre Dateien
-/home - Stammverzeichnis aller Nutzerverzeichnisse
-/root - Stammverzeichnis von root
+/bin - Binary files/commands
+/dev - Device files
+/etc - System configuration files
+/lib - Libraries
+/media - Mount point for removable media
+/mnt - Temporarily mounted file system
+/opt - Application programs
+/sbin - System binaries
+/tmp - Temporary files
+/home - Home directory for all user directories
+/root - Root directory
 
-# Ein Verzeichnisbaum besteht aus durch / getrennte Namen
-# Steht / am Anfang ist es ein absoluter Name. Ohne / ist es ein relativer Name
+# A directory tree consists of names separated by /
+# If / appears at the beginning, it is an absolute path. Without /, it is a relative path
 
-# Anzeige aller Nutzerverzeichnisse
+# List all user directories
 ls /home
 
-# Mit cd wechselt man in ein Verzeichnis
-# Mit einem ; werden mehrere Befehle getrennt
+# Use cd to change to a directory
+# Use a ; to separate multiple commands
 cd /home; ls -la
-# oder ein Verzeichnis nach oben
+# or go up one directory
 cd ..
-# Heimatverzeichnis ist ~ (Tilde) und das aktuelle Verzeichnis ist . (Period)
+# The home directory is ~ (tilde) and the current directory is . (period)
 cd ~
 ls -la .
 
-# Erzeugen eines Verzeichnisses
-mkdir Unterverzeichnis1
-mkdir Unterxerzeichnis2
-mkdir Unterxerzeichnis3
-# Löschen eines leeren Verzeichnisses
-rmdir Unterverzeichnis3
-# Löschen eines Verzeichnisses mit Inhalt
-# rm -rf <Verzeichnis>
+# Creating a directory
+mkdir Subdirectory1
+mkdir Subdirectory2
+mkdir Subdirectory3
+# Deleting an empty directory
+rmdir Subdirectory3
+# Deleting a directory with contents
+# rm -rf <directory>
 
-# Verzeichnis- und Dateirechte
+# Directory and file permissions
 # -rwxrwxr-x 1 peter peter 1484 Feb  2 17:36 bashBootcamp.sh
-# 3 verschiedene Zugriffsgruppen: Owner, Guppe und alle
-# 3 Verschiedene Berechtigungen: Schreiben (r), lesen (r) und execute(x)
-# Owner und Gruppe
-# Größe in Bytes
-# Änderungsdatum
+# 3 different access groups: Owner, Group, and Everyone
+# 3 different permissions: Write (r), Read (r), and Execute (x)
+# Owner and Group
+# Size in bytes
+# Modification date
 # Name
+
 
 ls -la bashBootcamp.sh
 chmod +x bashBootcamp.sh # setzen des executebits
 
 # >>> Globbing <<<
 #
-# Globbing bezeichnet die Expandierung von Wildcards vor der Befehlsausführung mit Patterns
-# * beliebige Zeichen, ? exakt ein Zeichen, [a-z] Character class
-# Anzeige aller Dateien im aktuellen Verzeichnis die mit bash beginnen
-# Achtung auf Sonderzeichen
-# Kein globbing findet statt wenn Anführungszeichen genutzt werden
+# Globbing refers to the expansion of wildcards using patterns before a command is executed
+# * any character, ? exactly one character, [a-z] character class
+# List all files in the current directory that begin with “bash”
+# Be careful with special characters
+# No globbing occurs when quotation marks are used
 ls ./bash*
 ls *.sh
-ls Unter[xv]erzeichnis
-ls Unter?erzeichnis
-rmdir Unterverzeichnis1
-rmdir Unterxerzeichnis2
+ls sub[xv]directory
+ls sub?directory
+rmdir subdirectory1
+rmdir subxdirectory2
 
 # >>> Text splitting <<<
 
-# Texte werden gemäß des Separators IFS zerlegt. Standard ist Space, Tab und LF
-# Steht der String in Anführungszeichen wird der Text nicht gesplittet
-text="eins zwei drei"
+# Text is split according to the IFS separator. The default separators are space, tab, and LF
+# If the string is enclosed in quotes, the text is not split
+text="one two three"
 
 echo "$text"
 for word in $text; do
@@ -179,7 +180,7 @@ done
 for word in "$text"; do
   echo "$word"
 done
-# macht kein Text splitting - wichtig bei Variablennutzung in Scripts diese in " ... " zu schreiben
+# Does not split text—it is important to enclose variables in scripts within “ ... ”
 
 # >>> Brace expansion
 
@@ -207,35 +208,35 @@ mkdir /usr/local/src/{old,new,dist,bugs}
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Suchpfade <<<
+# >>> Searchpathes <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Ausgabe des aktuellen Suchpfades
+# Display the current search path
 echo $PATH
-# bash Umgebungsvoreinstellung
-# Die Datei ~/.bashrc wird beim Öffnen des Commandwindows ausgeführt
-# und ermöglicht so alle möglichen Dinge voreinzustellen
-# wie z.B. den Pfad um ein eigenes Verzeichnis mit shell Scripts immer zu erreichen
-# Mit dem Doppelpunkt wird der Suchpfad um Verzeichnisse erweiter
+# Bash environment settings
+# The file ~/.bashrc is executed when the command window is opened
+# and thus allows you to set up all sorts of things
+# such as the path to always access a custom directory with shell scripts
+# The colon is used to extend the search path with directories
 
-# Also zuerst ein bin Verzeichnis erstellen
+# So first create a bin directory
 mkdir ~/bin
-# und dann die Datei ~/.bashrc editieren und
-export PATH=$PATH:~/bin # in .bashrc aufnehmen
-# Ansonsten muss immer der ganze Pfad angegeben werden bzw ./bashBootcamp.sh wenn das Script im aktuellen Verzeichnis steht
+# and then edit the ~/.bashrc file and
+export PATH=$PATH:~/bin # add this to .bashrc
+# Otherwise, you must always specify the full path or ./bashBootcamp.sh if the script is in the current directory
 
-# Suchen wo sich ein Script im Suchpfad befindet
+# Find where a script is located in the search path
 which ./bashBootcamp.sh
 
-# Ausgabe des cd Suchpfades
+# Output the CDPATH
 echo $CDPATH
-# Default ist
+# Default is
 #  export CDPATH=.
-# Beispielerweiterung in .bashrc
+# Example extension in .bashrc
 # export CDPATH=.:~/myProject
 
-# Ausgabe aller bekannten exports
+# Output all known exports
 env
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -244,58 +245,59 @@ env
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Mit pipes können Kommandoausgaben in ein weiteres Kommando weitergereicht werden. Typisch unter Linux. So können Oneliner entstehen wo mehrere Linux Tools hintereinander aufgerufen werden
-# Die Ausgabe von einem Kommando (stdout) wird die Eingabe (stdin) von dem folgenden Befehl Fehlermeldungen werden auf stderr geschrieben
+# Pipes allow command output to be passed to another command. This is common in Linux. This enables the creation of one-liners where multiple Linux tools are called sequentially
+# The output of one command (stdout) becomes the input (stdin) for the following command. Error messages are written to stderr
 
 ls ~ | grep -i boot*
-# Alternativ und besser
+# An alternative and better option
 ls *Boot*
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Häufig genutzte Linux Kommandos <<<
+# >>> Commonly used Linux commands <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# man <command> oder <command> --help liefert detailierte Info mit allen Optionen
+# man <command> or <command> --help provides detailed information with all options
 
-# cat - concatenate - Dateien aneinanderhängen
-# cp - Kopieren von Dateien
-# cut - Selektion von Teilen einer Textzeile
-# exec - Ausführen von Befehlen in keiner Subshell sondern Ersetzung der aktuellen shell
-# find - Suchen nach Dateien oder Verzeichnissen
-# grep - Suche nach Dateien mit einem bestimmten Inhalt
-# head - Anfang von Dateien anzeigen
-# less - Scrollfähige Anzeige von Dateien
-# locate - Suche nach Dateien mit der Datenbank locatedb
-# ls - Listen von Dateinverzeichnissen
-# man - Hilfetext anzeigen
-# mv - Dateien moven
-# rename - Umbenennen von Dateien
-# rm - Dateien löschen
-# rsync - Dateisynchronisation
-# script - Terminalsitzung in einer Datei mitschneiden
-# sed - Nicht interaktiver Zeileneditor
-# sleep - Pausieren
-# sort - sortieren von Dateiinhalten
-# sudo - temporäres Ausführen von Befehlen als root
-# tail - Ende von Dateien Anzeigen
-# tr - Umwandeln von Zeichen
-# tree - Verzeichnisstruktur rekursiv anzeigen
-# wc - Zählen von Zeichen, Zeilen
-# xargs - Liest Daten von stdin und führt Befehle mit diese Argumenten aus
+# cat - concatenate - concatenate files
+# cp - copy files
+# cut - select parts of a text line
+# exec - execute commands without creating a subshell; instead, it replaces the current shell
+# find - search for files or directories
+# grep - Search for files with specific content
+# head - Display the beginning of files
+# less - Scrollable display of files
+# locate - Search for files using the locatedb database
+# ls - List file directories
+# man - Display help text
+# mv - Move files
+# rename - Rename files
+# rm - Delete files
+# rsync - File synchronization
+# script - Record a terminal session to a file
+# sed - Non-interactive line editor
+# sleep - Pause
+# sort - Sort file contents
+# sudo - Temporarily execute commands as root
+# tail - Display the end of files
+# tr - Transform characters
+# tree - Recursively display directory structure
+# wc - Count characters and lines
+# xargs - Reads data from stdin and executes commands with these arguments
 
-# typische Nutzung von pipes
+# Typical uses of pipes
+# See also Unix philosophy (https://en.wikipedia.org/wiki/Unix_philosophy)
 
-# Zählen wie viele Trennkommentare in einer Datei sind
-grep "#>>>>>>>" ./bashBootcamp.sh | wc -l
-# Zähle wie viele Shellscripts es gibt
-find -iname "*.sh" | wc -l
-# Suche in allen shell scripts nach dem Text "if" aber nicht kniff o.ä.
-find -iname "*.sh" | xargs grep -H "\bif\b" | grep wc -lfind -iname "*.sh" | xargs grep -H "\bif\b" | grep wc -l
+# Count how many comment lines there are in a file
+grep “#>>>>>>>” ./bashBootcamp.sh | wc -l
+# Count how many shell scripts there are
+find -iname “*.sh” | wc -l
+# Search all shell scripts for the text “if” but not “kniff” or similar
+find -iname “*.sh” | xargs grep -H “\bif\b” | grep wc -lfind -iname “*.sh” | xargs grep -H “\bif\b” | grep wc -l
 
-# oder
-find -iname "*.sh" -exec grep -H "\bif\b" '{}' \; | wc -l
+# or
+find -iname “*.sh” -exec grep -H “\bif\b” ‘{}’ \; | wc -l
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
@@ -303,86 +305,86 @@ find -iname "*.sh" -exec grep -H "\bif\b" '{}' \; | wc -l
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Commandein- und Ausgaben können redirected werden. Üblicherweise sind das Ein- und Ausgabedateien
+# Command input and output can be redirected. These are typically input and output files
 
-# Ausgabe
-# stdout bzw 1 ist normaler Ausgabekanal, stderr bzw 2 ist Fehlerausgabekanal
-# Bei pipes wird von stdin gelesen und auf stdout geschrieben
-# > ist Kurzform von 1>
-ls > ls-datei
-# Eingabe - zählt Zeilen einer Datei
+# Output
+# stdout (or 1) is the standard output channel; stderr (or 2) is the standard error channel
+# With pipes, data is read from stdin and written to stdout
+# > is a shorthand for 1>
+ls > ls-file
+# Input - counts the lines in a file
 < bashBootcamp.sh wc -l
-# Alternativ und besser
+# Alternatively, and better
 wc -l bashBootcamp.sh
 
-# Sowohl stdout als auch stderr in eine Datei redirecten
-ls 1> ls-datei 2>&1
-# Achtung: Nicht umgekehrt
-ls 2>&1 1>ls-datei
-# Kurzform
-ls &>ls-datei
+# Redirect both stdout and stderr to a file
+ls 1> ls-file 2>&1
+# Caution: Do not reverse the order
+ls 2>&1 1>ls-file
+# Short form
+ls &>ls-file
 
-# exec Nutzung um stderr und stdout generell in eine Datei umzuleiten
+# Use exec to redirect both stderr and stdout to a file
 
 exec 1>>logfile
 exec 2>&1
 
-# oder gleich (Sowohl stdin als auch stderr werden redirected)
+# Or simply (both stdin and stderr are redirected)
 
 exec &>>logfile
 
-# Schreiben in eine Datei
-echo "Test" > datei
-# Anhängen an eine Datei
-echo "test" >> datei
+# Writing to a file
+echo “Test” > file
+# Appending to a file
+echo “test” >> file
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Returnwerte von Tools <<<
+# >>> Return Values of Tools <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# 0: Alles OK
-# >0: Fehler, konkreter Grund findet sich üblicherweise in den man pages
+# 0: Everything OK
+# >0: Error; the specific reason is usually found in the man pages
 
-# Berücksichtigung von Returnwerten
+# Handling return values
 
-# Führe Befehl2 nur aus wenn Befehl1 erfolgreich war
+# Execute command2 only if command1 was successful
 ls ~ && ls /
 
-# Führe Befehl2 aus wenn Befehl1 nicht erfolgreich war
+# Execute command2 if command1 was not successful
 ls /dummy || ls ~
 
-# Funktionen: return <0-255>
-# shellscript: exit <0-255>
+# Functions: return <0-255>
+# Shell script: exit <0-255>
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Besondere bash Variablen - Auswahl <<<
+# >>> Special bash variables - selection <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Aktuelles Vereichnis
-echo "$PWD"
-# Interner Feldseparator (Default: Space, tab und newline)
-echo -n "$IFS" | xxd # Ausgabe in hex
-# Suchpfad
-echo "$PATH"
+# Current directory
+echo “$PWD”
+# Internal field separator (default: space, tab, and newline)
+echo -n “$IFS” | xxd # Output in hex
+# Search path
+echo “$PATH”
 # Command prompt string
-echo "$PS1"
-# Aufrufargumente
-echo "$1 $2 $3"
-# Returnwert des letzten Script- oder Funktionsaufrufes
-echo "$?"
-# Anzahl Aufrufparameter eines Scripts
-echo "$#"
-# Script und Funktionsparameter als ein String
-echo "$*"
-# Script und Funktionsparameter als Array
-echo "$@"
+echo “$PS1”
+# Command-line arguments
+echo “$1 $2 $3”
+# Return value of the last script or function call
+echo “$?”
+# Number of command-line arguments for a script
+echo “$#”
+# Script and function arguments as a string
+echo “$*”
+# Script and function arguments as an array
+echo “$@”
 
 p() {
-	echo "Anzahl Args: $#"
+	echo "Args: $#"
 	for e in "$*"; do
 		echo '$*'": -$e-"
 	done
@@ -390,53 +392,53 @@ p() {
 		echo '$@'": -$e-"
 	done
 }
-p "eins" "zwei" "drei"
-p "eins zwei drei"
+p "one" "two" "three"
+p "one two three"
 
 ###########################################################################################
 #
-# ### Programmierung ###
+# ### Programming ###
 #
 ###########################################################################################
 
-# - Gutes Checktool (linter) für bash: shellcheck
-#	sudo apt install shellcheck
-#	https://github.com/koalaman/shellcheck/wiki/<shellcheckmessageid> liefert eine detailierte Beschreibung
-#       zu der Meldungsnummer und warum die Meldung geschrieben wurde und wie sie zu beseitigen ist
+# - A good linter for Bash: shellcheck
+#    sudo apt install shellcheck
+#    https://github.com/koalaman/shellcheck/wiki/<shellcheckmessageid> provides a detailed description
+#       of the message ID, why the message was generated, and how to fix it
 #
-# - Formatierungstool
+# - Formatting tool
 #   shfmt -i 3 *.sh (sudo apt install shfmt)
 
-# Verbreitete Editoren:
-# - vim (cmdline)
-# - nano (cmdline)
-# - geany (desktop) <== Als Einstieg empfohlen
+# Common editors:
+# - vim (command line)
+# - nano (command line)
+# - geany (desktop) <== Recommended for beginners
 # - emacs (desktop)
-# - vs code (IDE) (desktop)
-# - mc (ternminal ui)
+# - VS Code (IDE) (desktop)
+# - mc (terminal UI)
 # - ...
 
-# Kommentare
-# Zeichen in einer separaten Zeile oder hinter einem Befehl
+# Comments
+# Characters on a separate line or after a command
 
-# Scripte müssen ausführbar sein
+# Scripts must be executable
 chmod +x bashBootcamp.sh
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Variablen <<<
+# >>> Variables <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Beginnen mit $ auf der rechten Seite und ohne $ auf der linken Seite und sind immer Strings
-# Möglichst ${VARNAME} verwenden statt $VARNAME, ausser beim Rechnen mit Zahlen
+# Begin with $ on the right side and without $ on the left side, variables are always strings
+# Use ${VARNAME} instead of $VARNAME whenever possible, except when performing calculations with numbers
 VARIABLE1="Hello world"
 VARIABLE2="${VARIABLE1}"
 VARIABLE3=${VARIABLE1}
 VARIABLE4="$VARIABLE1"
 
-# Variablenwerte sollten möglichst immer in " eingeschlossen werden
-# - Schutz vor word splitting (IFS variable definiert splitting char, default ist Leerzeichen, tab und newline)
+# Variable values should always be enclosed in " whenever possible
+# - Protection against word splitting (IFS variable defines the splitting character; the default is a space, tab, or newline)
 
 f() {
 	echo "$1 - Parm#: $# Parms: $@"
@@ -448,12 +450,12 @@ f 2  $VARIABLE2
 f 3q "$VARIABLE3"
 f 3  $VARIABLE3
 
-# - schutz vor globbing (wildcard Ersetzung)
+# - Protection against globbing (wildcard substitution)
 VARIABLE1="*"
-echo ${VARIABLE1} # gibt nicht * aus sondern die vorhandenen Dateien im aktuellen Verzeichnis
-echo "${VARIABLE1}" # gibt * aus da kein globbing stattfindet
+echo ${VARIABLE1} # does not output * but rather the files in the current directory
+echo “${VARIABLE1}” # outputs * because globbing does not occur
 
-# Indirekte Adressierung über den Namen
+# Indirekt adressierung by name
 
 declare -n ref=PTR
 V1="VAR1"
@@ -463,19 +465,19 @@ V2="VAR2"
 PTR="V2"
 echo "$PTR"
 
-# Variablentypen
-# - Normale Variable V=10 oder v="eins"
-# - Liste - declare -a A; A=( 1 2 3 )
-# - Assoziatives Array/Dictionary - declare -A AA; AA=( [eins]=1 [zwei]=2 ) # [key]=value
+# Variable types
+# - Regular variable: V=10 or v="one"
+# - List: declare -a A; A=( 1 2 3 )
+# - Associative array/dictionary - declare -A AA; AA=( [one]=1 [two]=2 ) # [key]=value
 
-# Basis Syntaxelemente
-# - Text: "Hello world" oder 'Hello world'
-#   Bei " werden Sonderzeichen der bash interpretiert. Speziell das $ mit welchem Variablen beginnen. 
-#       D.h. Variablennamem werden expandiert. Bei ' findet keine Interpretation statt
-# - Zahlen: Nur ganze Zahlen
-#   Zahlenbasen: 0x42 - hexadezimal, 042 - oktal
+# Basic syntax elements
+# - Text: “Hello world” or 'Hello world'
+#   With “”, special characters are interpreted by bash. Specifically, the $ with which variables begin. 
+#       This means variable names are expanded. With ', no interpretation takes place
+# - Numbers: Only integers
+#   Number bases: 0x42 - hexadecimal, 042 - octal
 
-# Rechnen (keine $ notwendig bei Variablen)
+# Calculations (no $ required for variables)
 
 i=0
 (( i=i+1 ))
@@ -488,19 +490,19 @@ b=" "
 w="world"
 s="$s$b$w"
 
-# besser
+# better
 
 s="${s}${b}${w}"
 
-# Arbeiten mit Listen (zero based)
+# Use lists (are zero based)
 
 declare -a A=( "Aeins" "Azwei" "Adrei" "Avier" )
 
-# Arbeiten mit assoziativen Arrays
+# Use assoziative arrays
 
 declare -A AA=( [eins]=AAeins [zwei]=AAzwei )
 
-# Zugriff auf Elemente (sowohl liste als auch dictionary)
+# Access elements in list and dictionary
 echo "${AA["eins"]}"
 echo "${A[0]}"
 # Anzahl Elemente
@@ -518,7 +520,7 @@ unset "${AA["eins"]}"
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> bash interne Funktionen <<<
+# >>> bash internal functions <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -527,11 +529,11 @@ V="Hello world"
 echo "${V:7}"	# world
 echo "${V:7:1}" # w
 
-# Ersetzen
+# String substitution
 VV="${V/world/folks}"
 echo "$VV"
 
-# und diverse mehr
+# and much more (see man bash)
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
@@ -560,28 +562,28 @@ echo "$world $folks"
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Erste Zeilen eines bash Scriptes und debuggen <<<
+# >>> First lines in a script and bash debugging
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Sicherstellen, dass der bash Interpreter aufgerufen wird für die Datei
+# Ensure that the bash interpreter is called for the file
 #!/bin/env bash
-# oder
+# or
 #!/bin/bash
-# oder expliziter Aufruf der bash
+# or explicitly call bash
 # bash ./bashBootcamp.sh
 
-# set -x schaltet im Code den Debugmodus an und set +x schaltet ihn aus
+# `set -x` enables debug mode in the code, and `set +x` disables it
 
-# Einschalten des Debugmodes im ganzen Script
+# Enable debug mode for the entire script
 #!/bin/env -S bash -x
-# oder
+# or
 #!/bin/bash -x
 
-# Alternativ Aufruf des Scripts mit bash -x <Scriptname>
+# Alternatively, run the script with `bash -x <scriptname>`
 bash -x ./bashBootcamp.sh
 
-# Verbesserung der Debugausgaben mit Zeilennummern
+# Improve debug output with line numbers
 declare -r PS4='|${LINENO}> \011${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -590,7 +592,7 @@ declare -r PS4='|${LINENO}> \011${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Vollständige Form
+# Complete form
 
 b=true
 if $b; then
@@ -599,30 +601,30 @@ else
 	echo "false"
 fi
 
-# Es existieren mehrere syntaktische Formen
-# Zu empfehlen ist nur folgende zwei Formen zu nutzen:
-# Textvergleich
+# There are several syntactic forms
+# I recommend using only the following two forms:
+# Text comparison
 if [[ "a" == "b" ]]; then
-	echo "Gleich"
+	echo "Equal"
 else
-	echo "Unleich"
+	echo "Unequal"
 fi
-# Numerischer vergleich
+# Numerical comparison
 if (( "3" == "4" )); then
-	echo "Gleich"
+	echo "Equal"
 else
-	echo "Ungleich"
+	echo "Unequal"
 fi
-# Alternative Syntax
-# Numerischer Vergleich
+# Alternate syntax
+# Numerical comparison
 # if [ "a" -lt "b" ]  ...fi
-# String Vergleich
+# String comparison
 # if [ "a" = "b" ] ... fi
 # if [ "a" < "b" ] ...fi
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Diverse weitere if tests <<<
+# >>> Misc other if tests <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -638,7 +640,7 @@ else
 	echo "Is no directory"
 fi
 
-# Und und oder vergleiche
+# Use and and or 
 
 V1="eins"
 V2="zwei"
@@ -666,7 +668,7 @@ while read -r client; do
 	echo "$line"
 done < <(map -sP 192.168.0.0/24)
 
-# break terminiert eine Schleife
+# break terminates a loop
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
@@ -678,13 +680,13 @@ for e in "1 2 3"; do
 	echo "$e"
 done
 
-# oder
+# or
 
 for (( i=0; i<10; i++ )); do
 	echo -n "$i"
 done
 
-# continue führt weitere Loop aus
+# continue continues loop
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
@@ -713,32 +715,31 @@ case $c in
 	*) echo "switch default"
 esac
 
-# Sichtbarkeit von Variablen
-# - Kindprozesse sehen nur exportierte Variablen
+# Variable Visibility
+# - Child processes can only see exported variables
 export EXPORTEDVAR="4711"
 NONEXPORTEDVAR="4712"
-# ./bashBootcamp.sh # sieht nur EXPORTEDVAR
-#
+# ./bashBootcamp.sh # can only see EXPORTEDVAR
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> Funktionen <<<
+# >>> Functions <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Aufrufparameter sind $1, $2 usw
-# $0 sind alle Aufrufparameter
-# Return ist der Returnwert des letzten Befehls oder explitit mit return
+# Command-line arguments are $1, $2, etc.
+# $0 represents all command-line arguments
+# Return is the return value of the last command or is explicitly set using return
 demo1() {
-	echo "Funktion mit Aufrufparameter $1 und $2"
+	echo "Funktion with parameters $1 und $2"
 	return 0
 }
 demo1 "eins" "zwei"
 
-# Variables sind global ausser sie werden mit local definiert
-# Dadurch Rekursionen möglich
-# Beispiel: bash Forkbomb https://www.cyberciti.biz/faq/understanding-bash-fork-bomb/
-# Achtung: Default ist global in Funktionen, d.h. jede lokale Variable muss als local deklariert werden
+# Variables are global unless they are defined with `local`
+# This allows for recursion
+# Example: bash forkbomb https://www.cyberciti.biz/faq/understanding-bash-fork-bomb/
+# Note: The default is global within functions, meaning every local variable must be declared with `local`
 
 var1="var1_extern"
 demo4() {
@@ -751,50 +752,50 @@ demo4() {
 demo4 "var_intern"
 echo "var1 extern: $var1"
 
-# Returnwerte von Funktionen
-# Exitcodes von 0-255
+# Returnval,ues of functions
+# Exitcodes: 0-255
 demo2() {
 	return $1
 }
 demo2 0; echo $?
 demo2 42; echo $?
 
-# Ausgaben in stdout wie z.B. mit echo
+# Return result in stdout with echo for example
 demo5() {
 	echo "$1"
 }
-demo5 "Eins"
-demo5 "Zwei"
+demo5 "One"
+demo5 "Two"
 
-# bzw in einem Script die Ausgabe an eine Variable zuweisen
+# Assign the output of a function or script to a variable
 
-RETURNVAR="$(demo "Eins")"
+RETURNVAR="$(demo "One")"
 echo "$RETURNVAR"
 
-# Globale variablen
+# Global variables
 
-VARIABLE="eins"
+VARIABLE="one"
 demo3() {
 	VARIABLE="$1"
 }
 echo "$VARIABLE"
-demo3 "Zwei"
+demo3 "two"
 echo "$VARIABLE"
 
-# Zuweisung an eine Variable dessen Name als Argument mitgereicht wird - printf -v
+# Pass the variable name in a function call and store the result in the named variable - printf -v
 
-VARIABLE1="eins"
-VARIABLE2="zwei"
+VARIABLE1="one"
+VARIABLE2="two"
 demo6() {
-	printf -v "$1" "%s", "$2"	# speichere Wert von $2 in der Variable mit dem Namen der in $1 steht
+	printf -v "$1" "%s", "$2"	# stores value of $2 in variable named in $1 
 }
 echo "$VARIABLE1 $VARIABLE2"
-demo6 "VARIABLE1" "einseins"
-demo6 "VARIABLE2" "zweizwei"
+demo6 "VARIABLE1" "oneone"
+demo6 "VARIABLE2" "twotwo"
 echo "$VARIABLE1 $VARIABLE2"
 
-# Includes wie in C
-# sourcen von shell Scripts, keine Ausführung aber alle dort definierten Variablen werden im Scripts bekanntgemacht (nicht nur exportierte Variablen)
+# Includes like in C
+# source shell scripts, no execution but all defined variables and functions are then known by the sourcing script
 
 source bashBootcamp.sh
 
@@ -804,35 +805,35 @@ source bashBootcamp.sh
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Nutzung von konstantem Text in scripts
+# Usae constant text in scripts
 
 # bash expansion on
 cat <<EOF
-   Das Script steht in $PWD
+   This script is located in $PWD
 EOF
 
 # bash expansion off
 cat <<'EOF'
-   Das Script steht in $PWD
+   This script is located in $PWD
 EOF
 
 # String heredoc <<<
 
 wc -c <<< "Hello world" # counts number of chars
 
-# Nutzung statt cat "Hello world" | wc -c
+# Usage instead of useless cat "Hello world" | wc -c
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
-# >>> IFS Nutzung <<<
+# >>> IFS usage <<<
 #
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-# Splitten eines Textes
-# Achtung: Ohne ", da sonst kein splitting stattfindet
+# Split text
+# Attention: No ", otherwise nos split will happen
 
 IFS="."
-V="Das.ist.ein.Test"
+V="This.is.a.test"
 AU=( $V )
 AQ=( "$V" )
 echo "${#AU[@]}"
@@ -843,17 +844,17 @@ echo "${#AQ[@]}"
 for e in "${AQ[@]}"; do
 	echo "$e"
 done
-unset IFS						# IFS wieder auf default setzen
+unset IFS						# reset IFS to default
 
-# Sauberer Weg da kein globbing genutzt wird
+# Cleaner approach since no globbing is used
 
 IFS="."
-V="Das.ist.ein.Test"
+V="This.is.a.test"
 read -a array <<< $V
 for e in "${V[@]}"; do
    echo $e
 done
-unset IFS						# IFS wieder auf default setzen
+unset IFS						# reset IFS to default
 
 # >>> parameter expansions <<<
 
@@ -863,8 +864,8 @@ man bash 2>/dev/null | grep -E 'Parameter Expansion | \${.+}$'
 
 # >>> patterns <<<
 
-# Patterns werden i.W. beim globbing genutzt
-# Ausserdem beim test mit [[ .. == .. ]]
+# Patterns are mostly used by globbing
+# But not with test with [[ .. == .. ]]
 
 v="Hello world"
 
@@ -888,7 +889,7 @@ echo "$vm"
 
 ###########################################################################################
 #
-# ### Programmieraufgaben ###
+# ### Programming exercises ###
 #
 ###########################################################################################
 
