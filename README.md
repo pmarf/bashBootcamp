@@ -2,6 +2,9 @@
 
 Copyright (c) 2026 https://github.com/pmarf
 
+> [!TIP]
+> To download all files open `green code dropdown` and click `download ZIP` 
+
 ## Quick theoretical introduction with tips and tricks
 
 Read carefully [bashBootcamp.sh](https://raw.githubusercontent.com/pmarf/bashBootcamp/refs/heads/main/bashBootcamp.sh)
@@ -144,3 +147,4 @@ countfiles.sh                           9             24             17
 SUM:                                  112            216            423
 ----------------------------------------------------------------------------------
 ```
+
