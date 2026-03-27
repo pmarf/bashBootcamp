@@ -67,7 +67,7 @@ Read carefully [bashBootcamp.sh](https://raw.githubusercontent.com/pmarf/bashBoo
 
   `findactivedevices.sh [local ipv4 network] like 192.168.0.0/24 or 192.168.178.0/24`
 
-  * Hints: Use `map -sP "$1"` to scan network, use associative arrays and grep, use printf to enhance output format
+  * Hints: Use `nmap -sP "$1"` to scan network, use associative arrays and grep, use printf to enhance output format
   * Challenge: Accept an addtional option `-i` and `-n` and sort list according ip addresses or dns names
      **Note:** sort ips not alphabetically (default of sort command) but numerically
 
