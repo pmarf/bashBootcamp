@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-# oder allgemeiner
+# or more general
 #!/bin/env bash
 #
 # bash programming bootcamp
@@ -156,7 +156,7 @@ chmod +x bashBootcamp.sh # setzen des executebits
 #
 # Globbing refers to the expansion of wildcards using patterns before a command is executed
 # * any character, ? exactly one character, [a-z] character class
-# List all files in the current directory that begin with “bash”
+# List all files in the current directory that begin with "bash"
 # Be careful with special characters
 # No globbing occurs when quotation marks are used
 ls ./bash*
@@ -180,7 +180,7 @@ done
 for word in "$text"; do
   echo "$word"
 done
-# Does not split text—it is important to enclose variables in scripts within “ ... ”
+# Does not split text—it is important to enclose variables in scripts within " ... "
 
 # >>> Brace expansion
 
@@ -290,14 +290,14 @@ ls *Boot*
 # See also Unix philosophy (https://en.wikipedia.org/wiki/Unix_philosophy)
 
 # Count how many comment lines there are in a file
-grep “#>>>>>>>” ./bashBootcamp.sh | wc -l
+grep "#>>>>>>>" ./bashBootcamp.sh | wc -l
 # Count how many shell scripts there are
-find -iname “*.sh” | wc -l
-# Search all shell scripts for the text “if” but not “kniff” or similar
-find -iname “*.sh” | xargs grep -H “\bif\b” | grep wc -lfind -iname “*.sh” | xargs grep -H “\bif\b” | grep wc -l
+find . -iname "*.sh" | wc -l
+# Search all shell scripts for the text "if" but not "kniff" or similar
+find . -iname "*.sh" | xargs grep -H "\bif\b" | wc -l
 
 # or
-find -iname “*.sh” -exec grep -H “\bif\b” ‘{}’ \; | wc -l
+find . -iname "*.sh" -exec grep -H "\bif\b" '{}' \; | wc -l
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
@@ -334,9 +334,9 @@ exec 2>&1
 exec &>>logfile
 
 # Writing to a file
-echo “Test” > file
+echo "Test" > file
 # Appending to a file
-echo “test” >> file
+echo "test" >> file
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #
@@ -365,23 +365,23 @@ ls /dummy || ls ~
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 # Current directory
-echo “$PWD”
+echo "$PWD"
 # Internal field separator (default: space, tab, and newline)
-echo -n “$IFS” | xxd # Output in hex
+echo -n "$IFS" | xxd # Output in hex
 # Search path
-echo “$PATH”
+echo "$PATH"
 # Command prompt string
-echo “$PS1”
+echo "$PS1"
 # Command-line arguments
-echo “$1 $2 $3”
+echo "$1 $2 $3"
 # Return value of the last script or function call
-echo “$?”
+echo "$?"
 # Number of command-line arguments for a script
-echo “$#”
+echo "$#"
 # Script and function arguments as a string
-echo “$*”
+echo "$*"
 # Script and function arguments as an array
-echo “$@”
+echo "$@"
 
 p() {
 	echo "Args: $#"
@@ -414,6 +414,7 @@ p "one two three"
 # - nano (command line)
 # - geany (desktop) <== Recommended for beginners
 # - emacs (desktop)
+# - notepadqq (desktop)
 # - VS Code (IDE) (desktop)
 # - mc (terminal UI)
 # - ...
@@ -453,7 +454,7 @@ f 3  $VARIABLE3
 # - Protection against globbing (wildcard substitution)
 VARIABLE1="*"
 echo ${VARIABLE1} # does not output * but rather the files in the current directory
-echo “${VARIABLE1}” # outputs * because globbing does not occur
+echo "${VARIABLE1}" # outputs * because globbing does not occur
 
 # Indirekt adressierung by name
 
@@ -471,8 +472,8 @@ echo "$PTR"
 # - Associative array/dictionary - declare -A AA; AA=( [one]=1 [two]=2 ) # [key]=value
 
 # Basic syntax elements
-# - Text: “Hello world” or 'Hello world'
-#   With “”, special characters are interpreted by bash. Specifically, the $ with which variables begin. 
+# - Text: "Hello world" or 'Hello world'
+#   With ", special characters are interpreted by bash. Specifically, the $ with which variables begin. 
 #       This means variable names are expanded. With ', no interpretation takes place
 # - Numbers: Only integers
 #   Number bases: 0x42 - hexadecimal, 042 - octal
@@ -666,7 +667,7 @@ done < bashBootcamp.sh
 
 while read -r client; do
 	echo "$line"
-done < <(map -sP 192.168.0.0/24)
+done < <(nmap -sP 192.168.0.0/24)
 
 # break terminates a loop
 
