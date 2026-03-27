@@ -3,7 +3,7 @@
 Copyright (c) 2026 https://github.com/pmarf
 
 > [!TIP]
-> To download all files open `green code dropdown` and click `download ZIP` 
+> To download all files open `green Code dropdown button` and click `Download ZIP` 
 
 ## Quick theoretical introduction with tips and tricks
 
