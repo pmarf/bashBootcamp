@@ -78,7 +78,7 @@ if (($# != 0)); then
    fi
 else
    for i in $( # some tests
-      seq 0 5 15
+      seq 1 5 16
    ); do
       fibonacci "$i"
    done
