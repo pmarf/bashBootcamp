@@ -27,7 +27,9 @@ source functions.sh # include helperfunctions
 
 fibo_r() {
    local fm1 fm2 result
-   if (($1 <= 2)); then
+   if (($1 <= 0)); then
+      echo "0"
+   elif (($1 <= 2)); then
       echo "1"
    else
       ((fm1 = $1 - 1))
@@ -57,17 +59,18 @@ fibonacci() { # number
       error "Missing number"
    fi
 
-   if (($1 <= 0 || $1 > 20)); then
+   if (($1 < 0 || $1 > 20)); then
       error "Number $1 out of bounds"
    fi
 
-   result="$(fibo_r "$1")"
-   echo -n "$1! = $result (recursive)"
-
-   echo
    result=$(fibo_i "$1")
    echo -n "$1! = $result (iterative)"
    echo
+
+   result="$(fibo_r "$1")"
+   echo -n "$1! = $result (recursive)"
+   echo
+
 }
 
 if (($# != 0)); then
@@ -78,7 +81,7 @@ if (($# != 0)); then
    fi
 else
    for i in $( # some tests
-      seq 1 5 16
+      seq 0 5 15
    ); do
       fibonacci "$i"
    done
