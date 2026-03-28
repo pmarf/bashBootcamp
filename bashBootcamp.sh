@@ -407,7 +407,7 @@ p "one two three"
 #       of the message ID, why the message was generated, and how to fix it
 #
 # - Formatting tool
-#   shfmt -i 3 *.sh (sudo apt install shfmt)
+#   shfmt -i 3 -w *.sh (sudo apt install shfmt)
 
 # Common editors:
 # - vim (command line)

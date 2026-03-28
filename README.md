@@ -21,7 +21,7 @@ Read carefully [bashBootcamp.sh](https://raw.githubusercontent.com/pmarf/bashBoo
 1. Write short error message to stderr with helper function in case of an error
 1. Place helper functions in `function.sh` and source it
 1. Use `shellcheck -x <filename>` and correct any findings
-1. Follow standard C/C++ identation rules (shfmt -i 3 *.sh) will do this for you
+1. Follow standard C/C++ identation rules (shfmt -i 3 -w *.sh) will do this for you
 1. Execute `shellcheck [!b]*.sh 2>/dev/null && echo "*** OK ***" || echo "??? Fail ???"` to check all scripts
 1. If there is any required too missing (e.g. nmap, jq or anything else) install it with `sudo apt install <toolname>` 
 

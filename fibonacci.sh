@@ -25,24 +25,28 @@
 
 source functions.sh # include helperfunctions
 
-fak_r() {
-   local fm1 result
-   if (($1 < 1)); then
+fibo_r() {
+   local fm1 fm2 result
+   if (($1 <= 2)); then
       echo "1"
    else
       ((fm1 = $1 - 1))
-      fm1="$(fak_r "$fm1")"
-      ((result = $1 * fm1))
+      fm1="$(fibo_r "$fm1")"
+      ((fm2 = $1 - 2))
+      fm2="$(fibo_r "$fm2")"
+      ((result = fm1 + fm2))
       echo "$result"
    fi
 }
 
-fak_i() {
-   local result=1
-   for ((i = 2; i <= $1; i++)); do
-      ((result *= i))
+fibo_i() {
+   local fm1=0 fm2=1 t
+   for ((i = 0; i < $1; i++)); do
+      ((t = fm1))
+      ((fm1 = fm2))
+      ((fm2 = t + fm2))
    done
-   echo "$result"
+   echo "$fm1"
 }
 
 fibonacci() { # number
@@ -53,15 +57,15 @@ fibonacci() { # number
       error "Missing number"
    fi
 
-   if (($1 < 0 || $1 > 20)); then
-      error "Number out of bounds"
+   if (($1 <= 0 || $1 > 20)); then
+      error "Number $1 out of bounds"
    fi
 
-   result="$(fak_r "$1")"
+   result="$(fibo_r "$1")"
    echo -n "$1! = $result (recursive)"
 
    echo
-   result=$(fak_i "$1")
+   result=$(fibo_i "$1")
    echo -n "$1! = $result (iterative)"
    echo
 }
@@ -74,7 +78,7 @@ if (($# != 0)); then
    fi
 else
    for i in $( # some tests
-      seq 0 5 20
+      seq 0 5 15
    ); do
       fibonacci "$i"
    done
