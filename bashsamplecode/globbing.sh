@@ -22,6 +22,8 @@
 #
 #######################################################################################################################
 
+source ../functions.sh
+
 glob() {
    echo "Script called with following $(($# - 1)) arguments:" # $0 is the script name
    for ((i = 1; i <= $#; i++)); do                            # Processs al parameters
@@ -31,8 +33,9 @@ glob() {
 
 # Try to find bashBootcamp dir and use current dir otherwise
 echo "Trying to find bashBootcamp directory"
-if ! bootcampPath=$(find  ~ -iname bashBootcamp -type d | head -1); then
-	echo "Not found. Use currect directory"
+bootcampPath=$(find  ~ -iname bashBootcamp -type d | head -1)
+if [[ -z $bootcampPath ]]; then
+	echo "bashBootcamp directory not found. Use currect directory $PWD"
 	bootcampPath="."
 fi
 
